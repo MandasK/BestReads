@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BestReads
 {
@@ -25,6 +26,25 @@ namespace BestReads
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
+            var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
+            services
+                .AddAuthentication(Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = googleTokenUrl;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = googleTokenUrl,
+                        ValidateAudience = true,
+                        ValidAudience = firebaseProjectId,
+                        ValidateLifetime = true
+                    };
+                });
+
             services.AddControllers();
         }
 

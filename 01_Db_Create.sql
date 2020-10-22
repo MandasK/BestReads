@@ -90,5 +90,15 @@ CREATE TABLE [UserGenre] (
   CONSTRAINT [FK_UserGenre_User] FOREIGN KEY ([userId]) REFERENCES [Users] ([Id]),
   CONSTRAINT [FK_UserGenre_Genre] FOREIGN KEY ([genreId]) REFERENCES [Genre] ([Id])
 )
+CREATE TABLE [dbo].[Subscription] (
+    [Id]                      INT      IDENTITY (1, 1) NOT NULL,
+    [SubscriberUserProfileId] INT      NOT NULL,
+    [ProviderUserProfileId]   INT      NOT NULL,
+    [BeginDateTime]           DATETIME NOT NULL,
+    [EndDateTime]             DATETIME NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Subscription_Users_Subscriber] FOREIGN KEY ([SubscriberUserProfileId]) REFERENCES [dbo].[Users] ([Id]),
+    CONSTRAINT [FK_Subscription_Users_Provider] FOREIGN KEY ([ProviderUserProfileId]) REFERENCES [dbo].[Users] ([Id])
+);
 GO
 
