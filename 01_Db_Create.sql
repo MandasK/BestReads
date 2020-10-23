@@ -1,6 +1,6 @@
 ﻿USE [master]
 
-IF db_id('BestReads') IS NULl
+IF db_id('BestReads') IS NUll
   CREATE DATABASE [BestReads]
 GO
 
@@ -25,7 +25,7 @@ CREATE TABLE [Users] (
   [id] int PRIMARY KEY IDENTITY,
   [name] nvarchar(50) NOT NULL,
   [displayName] nvarchar(50) NOT NULL,
-  [bio] nvarchar,
+  [bio] nvarchar(4000),
   [imageLocation] nvarchar(255),
   [firebaseUserId] NVARCHAR(28) NOT NULL,
   [email] nvarchar(555) NOT NULL

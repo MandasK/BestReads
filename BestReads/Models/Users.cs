@@ -13,6 +13,10 @@ namespace BestReads.Models
         [MaxLength(50)]
         public string Name { get; set; }
         [Required]
+        [DataType(DataType.EmailAddress)]
+        [MaxLength(255)]
+        public string Email { get; set; }
+        [Required]
         [MaxLength(50)]
         public string DisplayName { get; set; }
         public string Bio { get; set; }
