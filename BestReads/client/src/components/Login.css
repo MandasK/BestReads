@@ -1,0 +1,12 @@
+.loginCard {
+    margin: 5em auto;
+}
+
+.loginCardBody {
+    background-color: #FFFFF6
+}
+
+.LoginButton.btn {
+    background-color: #E67D42;
+    color: #242124;
+}
