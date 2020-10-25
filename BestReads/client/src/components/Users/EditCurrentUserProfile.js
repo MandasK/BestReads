@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Card, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { useHistory, useParams } from 'react-router-dom';
+import "./UserProfile.css"
 
 const EditCurrentuserProfile = () => {
     const {currentUser, updateUser, getCurrentUser} = useContext(UserProfileContext);
@@ -53,12 +54,14 @@ const EditCurrentuserProfile = () => {
 
     return (
         <div className="row justify-content-center">
-            <Card className="col-sm-12 col-lg-6">
-                <CardBody>
+            <Card className="col-sm-12 col-lg-6 editUserProfileCard">
+                <CardBody className="editUserProfileCardBody">
                     <Form>
                         <FormGroup>
                             <Label for="name">Name</Label>
                             <Input 
+                                className="InputBackgroundEditUser"
+                                style={{background: "#FFFFF6"}}
                                 id="name"
                                 type="text"
                                 defaultValue={currentUser.name}
@@ -68,6 +71,8 @@ const EditCurrentuserProfile = () => {
                         <FormGroup>
                             <Label for="displayName">Display Name</Label>
                             <Input 
+                                className="InputBackgroundEditUser"
+                                style={{background: "#FFFFF6"}}
                                 id="displayName"
                                 type="text"
                                 defaultValue={currentUser.displayName}
@@ -77,6 +82,8 @@ const EditCurrentuserProfile = () => {
                         <FormGroup>
                             <Label for="bio">Bio</Label>
                             <Input 
+                                className="InputBackgroundEditUser"
+                                style={{background: "#FFFFF6"}}
                                 id="bio"
                                 type="textarea"
                                 rows="5"
@@ -87,6 +94,8 @@ const EditCurrentuserProfile = () => {
                         <FormGroup>
                             <Label for="imageLocation">Image URL</Label>
                             <Input 
+                                className="InputBackgroundEditUser"
+                                style={{background: "#FFFFF6"}}
                                 id="imageLocation"
                                 type="text"
                                 placeholder="Enter URL for Image"
@@ -95,8 +104,8 @@ const EditCurrentuserProfile = () => {
                             />
                         </FormGroup>
                     </Form>
-                    <Button color="info"  onClick={editUser}>Update</Button>
-                    <Button color="danger"  onClick={() => history.push("/myprofile")}>Go Back</Button>
+                    <Button className="updateProfileButton"  onClick={editUser}>Update</Button>
+                    <Button className="goBackProfileButton"  onClick={() => history.push("/myprofile")}>Cancel</Button>
                 </CardBody>
             </Card>
         </div>

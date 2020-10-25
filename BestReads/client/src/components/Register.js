@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Card, CardBody } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
+import "./Login.css"
 
 export default function Register() {
   const history = useHistory();
@@ -27,41 +28,47 @@ export default function Register() {
   };
 
   return (
+    <div>
+      <Card className="col-sm-12 col-lg-6 loginCard">
+      <CardBody className="loginCardBody">
     <Form onSubmit={registerClick}>
       <fieldset>
         <FormGroup>
           <Label htmlFor="name">Name</Label>
-          <Input id="name" type="text" onChange={e => setName(e.target.value)} />
+          <Input style={{background: "#FFFFF6"}} id="name" type="text" onChange={e => setName(e.target.value)} />
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="displayName">User Name</Label>
-          <Input id="displayName" type="text" onChange={e => setDisplayName(e.target.value)} />
+          <Label  htmlFor="displayName">User Name</Label>
+          <Input style={{background: "#FFFFF6"}} id="displayName" type="text" onChange={e => setDisplayName(e.target.value)} />
         </FormGroup>
         <FormGroup>
           <Label for="email">Email</Label>
-          <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
+          <Input style={{background: "#FFFFF6"}} id="email" type="text" onChange={e => setEmail(e.target.value)} />
         </FormGroup>
         <FormGroup>
           <Label for="password">Password</Label>
-          <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
+          <Input style={{background: "#FFFFF6"}} id="password" type="password" onChange={e => setPassword(e.target.value)} />
         </FormGroup>
         <FormGroup>
           <Label for="confirmPassword">Confirm Password</Label>
-          <Input id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
+          <Input style={{background: "#FFFFF6"}} id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
         </FormGroup>
         <FormGroup>
           <Label htmlFor="bio">Bio</Label>
-          <Input id="bio" type="text" onChange={e => setBio(e.target.value)} />
+          <Input style={{background: "#FFFFF6"}} id="bio" type="text" onChange={e => setBio(e.target.value)} />
         </FormGroup> 
         <FormGroup>
           <Label htmlFor="imageLocation">Profile Image URL</Label>
-          <Input id="imageLocation" type="text" onChange={e => setImageLocation(e.target.value)} />
+          <Input style={{background: "#FFFFF6"}} id="imageLocation" type="text" onChange={e => setImageLocation(e.target.value)} />
         </FormGroup>
         <FormGroup></FormGroup>
         <FormGroup>   
-          <Button>Register</Button>
+          <Button className="LoginButton">Register</Button>
         </FormGroup>
       </fieldset>
     </Form>
+    </CardBody>
+    </Card>
+    </div>
   );
 }

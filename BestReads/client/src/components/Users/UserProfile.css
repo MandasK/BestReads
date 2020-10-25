@@ -1,0 +1,37 @@
+.smallUserDetailContainer {
+    background-color: #FFFFF6;
+    margin-top: 1em;
+}
+
+.smallUserDetailBodyContainer {
+    background-color: #FFFFF6;
+}
+
+.smallUserDetailContainerButton.btn {
+    background-color: #E67D42;
+    color: #242124;
+    
+}
+
+.editUserProfileCardBody {
+    background-color: #FFFFF6;
+}
+
+.editUserProfileCard {
+    margin: 5em auto;
+}
+
+.BackgroundEditUser.form-control {
+    background-color: #FFFFF6 !important;
+}
+
+.updateProfileButton.btn {
+    background-color: #E67D42;
+    color: #242124;
+}
+
+.goBackProfileButton.btn {
+    background-color: #F6CEB7;
+    color: #242124;
+    margin-left: 1em;
+}
