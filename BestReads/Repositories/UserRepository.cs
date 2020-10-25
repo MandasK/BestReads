@@ -87,6 +87,48 @@ namespace BestReads.Repositories
             }
         }
 
+        public Users GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT Id,
+                               Name,
+                               Email,
+                               DisplayName,
+                               ImageLocation,
+                               Bio
+                        FROM Users
+                        WHERE ID = @id
+                                       ";
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Users user = null;
+                    if (reader.Read())
+                    {
+                        user = new Users()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            Email = DbUtils.GetString(reader, "Email"),
+                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                            Bio = DbUtils.GetString(reader, "Bio")
+                        };
+                    }
+
+                    reader.Close();
+
+                    return user;
+                }
+            }
+        }
+
         public void Add(Users user)
         {
             using (var conn = Connection)

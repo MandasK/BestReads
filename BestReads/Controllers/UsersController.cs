@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BestReads.Models;
 using BestReads.Repositories;
@@ -33,6 +34,18 @@ namespace BestReads.Controllers
             return Ok(_userRepository.GetByFirebaseUserId(firebaseUserId));
         }
 
+        [HttpGet("{id}/details")]
+        public IActionResult GetById(int id)
+        {
+            var userProfile = _userRepository.GetById(id);
+            if(userProfile == null)
+            {
+                return NotFound();
+            }
+            return Ok(userProfile);
+
+        }
+
         [HttpPost]
         public IActionResult Post(Users user)
         {
@@ -49,6 +62,12 @@ namespace BestReads.Controllers
             }
             _userRepository.Update(user);
             return NoContent();
+        }
+
+        private Users GetCurrentUser()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 
