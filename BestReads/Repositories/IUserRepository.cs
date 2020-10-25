@@ -8,6 +8,7 @@ namespace BestReads.Repositories
         void Add(Users user);
         List<Users> GetAll();
         Users GetByFirebaseUserId(string firebaseUserId);
+        Users GetById(int id);
         void Update(Users user);
     }
 }
