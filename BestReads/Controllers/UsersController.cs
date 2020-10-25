@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using BestReads.Models;
 using BestReads.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BestReads.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase

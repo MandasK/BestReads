@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BestReads
@@ -35,6 +36,7 @@ namespace BestReads
                 .AddAuthentication(Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
+                    
                     options.Authority = googleTokenUrl;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -54,6 +56,7 @@ namespace BestReads
         {
             if (env.IsDevelopment() || env.IsEnvironment("Local"))
             {
+                
                 app.UseDeveloperExceptionPage();
             }
 
