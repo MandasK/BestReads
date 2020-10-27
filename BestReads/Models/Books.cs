@@ -17,9 +17,9 @@ namespace BestReads.Models
         [Required]
         public string About { get; set; }
         [Required]
-        public string AuthorName { get; set; }
-        [Required]
+        public List<string> Author { get; set; }
+        public List<string> Genres { get; set; }
         public int GenreId { get; set; }
-        public Genre Genre { get; set; }
+        
     }
 }
