@@ -17,6 +17,6 @@ namespace BestReads.Models
         public Users User { get; set; }
         [Required]
         public int BookId { get; set; }
-        public Books Book { get; set; }
+        public Book Book { get; set; }
     }
 }

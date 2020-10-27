@@ -30,9 +30,10 @@ namespace BestReads
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddHttpClient();
+
+
             services.AddScoped<IOpenBookService, OpenBookService>();
-            services.AddControllers();
+            services.AddHttpClient();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
