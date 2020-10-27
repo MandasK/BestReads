@@ -28,6 +28,7 @@ namespace BestReads.Services
         public async Task<List<Book>> SearchForBook(string query)
         {
             string url = BuildOpenBookUrl(query);
+            var books = new List<Book>();
 
             var client = _httpFactory.CreateClient("OpenBookClient");
             var response = await client.GetAsync(url);
@@ -48,13 +49,11 @@ namespace BestReads.Services
                     AverageRating = book.volumeInfo.averageRating,
                     RatingCount = book.volumeInfo.ratingsCount,
                     Authors = book.volumeInfo.authors,
-                    
-                    Genres = book.volumeInfo.categories.Select(genre => new Genre
-                    {
-                        Name = genre
-                    }).ToList()
+                    Genres = book.volumeInfo.categories
 
-                }).ToList(); 
+                }).ToList();
+
+
             }
             else
             {

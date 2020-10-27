@@ -34,6 +34,9 @@ export default function Header() {
                         <NavItem>
                             <NavLink tag={RRNavLink} to="/myProfile">My Profile</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink tag={RRNavLink} to="/books/search">My Profile</NavLink>
+                        </NavItem>
                         </>
                         }
                     </Nav>

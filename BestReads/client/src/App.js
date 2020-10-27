@@ -4,13 +4,16 @@ import { UserProfileProvider } from "./providers/UserProfileProvider";
 import ApplicationViews from "./components/ApplicationViews";
 import Header from "./components/Header";
 import './App.css';
+import { BookSearchProvider } from './providers/BookSearchProvider';
 
 function App() {
   return (
    <Router>
      <UserProfileProvider>
+       <BookSearchProvider>
        <Header />
        <ApplicationViews />
+       </BookSearchProvider>
      </UserProfileProvider>
    </Router>
   );
