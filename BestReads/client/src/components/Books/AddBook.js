@@ -12,6 +12,10 @@ const AddBook = () => {
     useEffect(() => {
         getSelectedBook(googleId).then(() => setIsLoading(true))
     }, []);
+
+
+    const regex = /<[^>]*>/gi;
+    let bookAbout = book.about;
     
     if(!book) {
         return null;
@@ -29,7 +33,9 @@ const AddBook = () => {
                     <div>Author(s): {book.authors}</div>
                     <br></br>
                     <div>About:</div>
-                    <div>{book.about}</div>
+                    <div>
+                    {bookAbout.replaceAll(regex, " ")}
+                    </div>
                     <br></br>
                     <div>Page Count: {book.pageCount}</div>
                     <br></br>

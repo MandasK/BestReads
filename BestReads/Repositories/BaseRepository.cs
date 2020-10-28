@@ -19,5 +19,7 @@ namespace BestReads.Repositories
                 return new SqlConnection(_connectionString);
             }
         }
+
+        
     }
 }

@@ -30,6 +30,8 @@ namespace BestReads
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IGenreRepository, GenreRepository>();
 
 
             services.AddScoped<IOpenBookService, OpenBookService>();
