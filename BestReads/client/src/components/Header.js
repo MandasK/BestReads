@@ -22,7 +22,7 @@ export default function Header() {
     return (
         <div>
             <Navbar className="navbarColor" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/"><img src={BRIcon} className="headerImageNavBar" /></NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/"><img src={BRIcon} alt="logo" className="headerImageNavBar" /></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
@@ -35,7 +35,7 @@ export default function Header() {
                             <NavLink tag={RRNavLink} to="/myProfile">My Profile</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={RRNavLink} to="/books/search">My Profile</NavLink>
+                            <NavLink tag={RRNavLink} to="/books/search">Book Search</NavLink>
                         </NavItem>
                         </>
                         }

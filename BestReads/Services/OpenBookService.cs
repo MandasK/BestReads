@@ -14,6 +14,7 @@ namespace BestReads.Services
 {
     public interface IOpenBookService
     {
+        Task<Book> GetSelectedBook(string googleId);
         Task<List<Book>> SearchForBook(string query);
     }
     public class OpenBookService : IOpenBookService
@@ -49,7 +50,12 @@ namespace BestReads.Services
                     AverageRating = book.volumeInfo.averageRating,
                     RatingCount = book.volumeInfo.ratingsCount,
                     Authors = book.volumeInfo.authors,
-                    Genres = book.volumeInfo.categories
+                    Genres = book.volumeInfo.categories?.Select(genre => new Genre
+                    {
+                        Name = genre
+                    }).ToList()
+
+
 
                 }).ToList();
 
@@ -61,12 +67,57 @@ namespace BestReads.Services
             }
         }
 
+        public async Task<Book> GetSelectedBook(string googleId)
+        {
+            string url = BuildGetBookUrl(googleId);
+            
+
+            var client = _httpFactory.CreateClient("OpenBookClient");
+            var response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonOpts = new JsonSerializerOptions { IgnoreNullValues = true, PropertyNameCaseInsensitive = true };
+                var contentStream = await response.Content.ReadAsStreamAsync();
+                var openBookResponse = await JsonSerializer.DeserializeAsync<GetBookResponse>(contentStream, jsonOpts);
+               
+                var book = new Book()
+                {
+                    Title = openBookResponse.volumeInfo.title,
+                    GoogleId = openBookResponse.id,
+                    ImageLocation = openBookResponse.volumeInfo.imageLinks.large,
+                    About = openBookResponse.volumeInfo.description,
+                    PageCount = openBookResponse.volumeInfo.pageCount,
+                    PublishDate = openBookResponse.volumeInfo.publishedDate,
+                    AverageRating = openBookResponse.volumeInfo.averageRating,
+                    RatingCount = openBookResponse.volumeInfo.ratingsCount,
+                    Authors = openBookResponse.volumeInfo.authors,
+                    Genres = openBookResponse.volumeInfo.categories?.Select(genre => new Genre
+                    {
+                        Name = genre
+                    }).ToList()
+
+                };
+
+                return book;
+
+            }
+            else
+            {
+                throw new OpenBookException(response.StatusCode, "Error response from Google Books API: " + response.ReasonPhrase);
+            }
+        }
+
 
         private string BuildOpenBookUrl(string query)
         {
-            return $"https://www.googleapis.com/books/v1/volumes?q={query}";
-                   
-                   
+            return $"https://www.googleapis.com/books/v1/volumes?q=" +
+                $"\"{query}\"";       
+        }
+
+        private string BuildGetBookUrl(string googleId)
+        {
+            return $"https://www.googleapis.com/books/v1/volumes/{googleId}";
         }
     }
 

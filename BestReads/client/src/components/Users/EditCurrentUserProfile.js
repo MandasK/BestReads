@@ -1,8 +1,7 @@
-import { faPray } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Card, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import "./UserProfile.css"
 
 const EditCurrentuserProfile = () => {

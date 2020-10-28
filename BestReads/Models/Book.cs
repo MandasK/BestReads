@@ -24,7 +24,7 @@ namespace BestReads.Models
 
        
         public List<string> Authors { get; set; }
-        public List<string> Genres { get; set; }
+        public List<Genre> Genres { get; set; }
         
         
     }

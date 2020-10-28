@@ -46,5 +46,28 @@ namespace BestReads.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+
+        [HttpGet("{googleId}")]
+        public async Task<IActionResult> GetByGoogleId(string googleId)
+        {
+            if (string.IsNullOrEmpty(googleId))
+                return BadRequest("query parameter is missing");
+            try
+            {
+                var book = await _bookService.GetSelectedBook(googleId);
+                return Ok(book);
+            }
+            catch (OpenBookException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                    return BadRequest($"Query: \"{ googleId }\" not found.");
+                else
+                    return StatusCode(500, e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
     }
 }

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState, } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Card, CardImg, CardBody, Button, Row, Col } from 'reactstrap';
 import "./UserProfile.css"
 
 const CurrentUserProfile = () => {
-    const { currentUser, getCurrentUser, getUserById } = useContext(UserProfileContext);
+    const { currentUser, getCurrentUser } = useContext(UserProfileContext);
     const [isloading, setIsLoading] = useState(false);
     const history = useHistory();
 
@@ -13,8 +13,6 @@ const CurrentUserProfile = () => {
         getCurrentUser(JSON.parse(sessionStorage.getItem("userProfile")).firebaseUserId)
         .then(() => setIsLoading(true))
     }, []);
-
-    console.log(currentUser);
 
     if(!currentUser) {
         return null;

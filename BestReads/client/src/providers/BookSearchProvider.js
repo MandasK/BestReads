@@ -5,16 +5,32 @@ export const BookSearchContext = React.createContext();
 
 export function BookSearchProvider(props) {
     const [books, setBooks] =useState([]);
+    const [book, setBook] = useState([]);
     const { getToken } = useContext(UserProfileContext);
 
-  const searchBooks = (search) => {
-  return fetch(`books/?query=${search}`)
-  .then((res) =>res.json())
-  .then(setBooks);
-  };
+  const searchBooks = (search) => 
+      getToken().then((token) =>
+        fetch(`/books/?query=${search}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+      }
+  }).then((res) => res.json())
+        .then(setBooks)
+      );
+
+    const getSelectedBook = (googleId) =>
+        
+            fetch(`/books/${googleId}/?googleId=${googleId}`, {
+                method: "GET"
+                
+            }).then((res) => res.json())
+                .then(setBook)
+            
+
 
   return(
-      <BookSearchContext.Provider value={{ books, getToken, searchBooks }}>
+      <BookSearchContext.Provider value={{ books,book, getToken, searchBooks, getSelectedBook }}>
           {props.children}
       </BookSearchContext.Provider>
   )

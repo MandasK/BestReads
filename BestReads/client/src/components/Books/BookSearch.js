@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { BookSearchContext } from '../../providers/BookSearchProvider';
+import { Link } from 'react-router-dom';
 import { Card, CardBody, Form, FormGroup, Input, Button, Table } from 'reactstrap';
 
 const BookSearch = () => {
@@ -16,7 +17,7 @@ const BookSearch = () => {
     };
 
     return (
-        <div className="row justify-content-center">
+        <div className="justify-content-center">
         <Card className="col-sm-12 col-lg-6 editUserProfileCard">
         <CardBody className="editUserProfileCardBody">
             <Form>
@@ -36,24 +37,26 @@ const BookSearch = () => {
         </CardBody>
         </Card>
 
-        <div>
-            <Table>
+        
+            <Table style={{width: "50%", margin: "0 auto"}}>
                 <thead>
-                    <th>Book Cover</th>
-                    <th>Title</th>
-                    <th>Author</th>
+                    <tr>
+                    <th style={{background: "#FFFFF6"}}>Book Cover</th>
+                    <th style={{background: "#FFFFF6"}}>Title</th>
+                    <th style={{background: "#FFFFF6"}}>Author</th>
+                    </tr>
                 </thead>
             {books.map((book) => (
-                <tbody key={book.id}>
-                    <tr>
-                        <td><img src={book.imageLocation} alt={book.title} /></td>
+                <tbody>
+                    <tr style={{background: "#FFFFF6"}}>
+                        <td><Link to={`/book/${book.googleId}/details`}><img src={book.imageLocation} alt={book.title} /></Link></td>
                         <td>{book.title}</td>
                         <td>{book.authors}</td>
                     </tr>
                 </tbody>
             ))}
             </Table>
-        </div>
+        
 
 
         </div>
