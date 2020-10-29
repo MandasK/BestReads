@@ -54,7 +54,8 @@ export const SubscriptionProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 }
-            }));
+            }))
+            
 
     return(
         <SubscriptionContext.Provider value={{ subscriptions, addSubscription, unSubscribe, getReleventSubscriptions, getUserSubscriptions, getToken }}>
