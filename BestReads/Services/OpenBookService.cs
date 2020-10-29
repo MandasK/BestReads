@@ -41,21 +41,15 @@ namespace BestReads.Services
                 var openBookResponse = await JsonSerializer.DeserializeAsync<OpenBookResponse>(contentStream, jsonOpts);
                 return openBookResponse.items.Select(book => new Book
                 {
-                    Title = book.volumeInfo.title,
+                    Title = book.volumeInfo?.title,
                     GoogleId = book.id,
-                    ImageLocation = book.volumeInfo.imageLinks.thumbnail,
-                    About = book.volumeInfo.description,
+                    ImageLocation = book.volumeInfo.imageLinks?.thumbnail,
+                    About = book.volumeInfo?.description,
                     PageCount = book.volumeInfo.pageCount,
-                    PublishDate = book.volumeInfo.publishedDate,
+                    PublishDate = book.volumeInfo?.publishedDate,
                     AverageRating = book.volumeInfo.averageRating,
                     RatingCount = book.volumeInfo.ratingsCount,
-                    Authors = book.volumeInfo.authors,
-                    Genres = book.volumeInfo.categories?.Select(genre => new Genre
-                    {
-                        Name = genre
-                    }).ToList()
-
-
+                    Authors = book.volumeInfo?.authors
 
                 }).ToList();
 
@@ -83,20 +77,15 @@ namespace BestReads.Services
                
                 var book = new Book()
                 {
-                    Title = openBookResponse.volumeInfo.title,
+                    Title = openBookResponse.volumeInfo?.title,
                     GoogleId = openBookResponse.id,
-                    ImageLocation = openBookResponse.volumeInfo.imageLinks.large,
-                    About = openBookResponse.volumeInfo.description,
+                    ImageLocation = openBookResponse.volumeInfo.imageLinks?.large,
+                    About = openBookResponse.volumeInfo?.description,
                     PageCount = openBookResponse.volumeInfo.pageCount,
-                    PublishDate = openBookResponse.volumeInfo.publishedDate,
+                    PublishDate = openBookResponse.volumeInfo?.publishedDate,
                     AverageRating = openBookResponse.volumeInfo.averageRating,
                     RatingCount = openBookResponse.volumeInfo.ratingsCount,
-                    Authors = openBookResponse.volumeInfo.authors,
-                    Genres = openBookResponse.volumeInfo.categories?.Select(genre => new Genre
-                    {
-                        Name = genre
-                    }).ToList()
-
+                    Authors = openBookResponse.volumeInfo?.authors
                 };
 
                 return book;

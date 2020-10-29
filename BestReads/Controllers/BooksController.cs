@@ -4,13 +4,16 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using BestReads.Infrastructure;
+using BestReads.Repositories;
 using BestReads.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace BestReads.Controllers
 {
+    
     [Route("[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
@@ -22,6 +25,7 @@ namespace BestReads.Controllers
         {
             _logger = logger;
             _bookService = bookService;
+            
         }
 
         [HttpGet]

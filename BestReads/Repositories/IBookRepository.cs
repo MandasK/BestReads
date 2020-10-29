@@ -7,6 +7,7 @@ namespace BestReads.Repositories
     {
         void Add(Book book);
         List<Book> GetAllBooks();
+        Book GetByGoogleId(string googleId);
         Book GetById(int id);
     }
 }

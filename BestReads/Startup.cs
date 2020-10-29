@@ -32,6 +32,7 @@ namespace BestReads
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IGenreRepository, GenreRepository>();
+            services.AddTransient<ISubscriptionRepository, SubscriptionRepository>();
 
 
             services.AddScoped<IOpenBookService, OpenBookService>();

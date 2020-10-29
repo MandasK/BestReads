@@ -5,14 +5,17 @@ import ApplicationViews from "./components/ApplicationViews";
 import Header from "./components/Header";
 import './App.css';
 import { BookSearchProvider } from './providers/BookSearchProvider';
+import { BookProvider } from './providers/BookProvider';
 
 function App() {
   return (
    <Router>
      <UserProfileProvider>
        <BookSearchProvider>
+       <BookProvider>
        <Header />
        <ApplicationViews />
+       </BookProvider>  
        </BookSearchProvider>
      </UserProfileProvider>
    </Router>

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { BookSearchContext } from '../../providers/BookSearchProvider';
+import { BookContext } from '../../providers/BookProvider';
 import { CardHeader, Card, Spinner, CardImg, CardBody, Button, Row } from 'reactstrap';
 
 const AddBook = () => {
     const { getSelectedBook, book } = useContext(BookSearchContext);
+    const { addBook } = useContext(BookContext);
     const [isLoading, setIsLoading] = useState(false);
     const {googleId} = useParams();
     const history = useHistory();
@@ -13,9 +15,27 @@ const AddBook = () => {
         getSelectedBook(googleId).then(() => setIsLoading(true))
     }, []);
 
-
+    let bookauthor = book.authors;
     const regex = /<[^>]*>/gi;
     let bookAbout = book.about;
+
+    const submit = () => {
+        const newBook = {
+           googleId: book.googleId,
+           title: book.title,
+           imageLocation: book.imageLocation,
+           about: book.about,
+           pageCount: book.pageCount,
+           publishDate: book.publishDate,
+           averageRating: book.averageRating,
+           ratingCount: book.ratingCount,
+           authors: bookauthor
+        };
+
+        addBook(newBook).then((res) => {
+            history.push(`/books/${res.id}`)
+        });
+    }
     
     if(!book) {
         return null;
@@ -51,7 +71,7 @@ const AddBook = () => {
                     <Button type="button"
                                     className="updateProfileButton"
                                     style= {{ marginLeft: "2em", marginBottom: "2em" }}
-                                    // onClick={}
+                                    onClick={submit}
                                     >Save Book
                     </Button>
                 </Row>   

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BestReads.Models;
 using BestReads.Utils;
+using System.Net;
 
 namespace BestReads.Repositories
 {
@@ -47,7 +48,7 @@ namespace BestReads.Repositories
                             GoogleId = DbUtils.GetString(reader, "googleId"),
                             PageCount = DbUtils.GetInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = DbUtils.GetInt(reader, "averageRating"),
+                            AverageRating = reader.GetDouble(reader.GetOrdinal("averageRating")),
                             RatingCount = DbUtils.GetInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
@@ -100,7 +101,7 @@ namespace BestReads.Repositories
                             GoogleId = DbUtils.GetString(reader, "googleId"),
                             PageCount = DbUtils.GetInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = DbUtils.GetInt(reader, "averageRating"),
+                            AverageRating = reader.GetDouble(reader.GetOrdinal("averageRating")),
                             RatingCount = DbUtils.GetInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
@@ -114,6 +115,59 @@ namespace BestReads.Repositories
                 }
             }
         }
+        public Book GetByGoogleId(string googleId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        Select id,
+                               title, 
+                               imageLocation, 
+                               about, 
+                               authors,
+                               googleId,
+                               pageCount, 
+                               publishDate, 
+                               averageRating,
+                               RatingCount
+                        FROM Books
+                        Where googleId = @googleId
+                                       ";
+                    DbUtils.AddParameter(cmd, "@googleId", googleId);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Book book = null;
+                    if (reader.Read())
+                    {
+                        book = new Book()
+                        {
+                            Id = DbUtils.GetInt(reader, "id"),
+                            Title = DbUtils.GetString(reader, "title"),
+                            ImageLocation = DbUtils.GetString(reader, "imageLocation"),
+                            About = DbUtils.GetString(reader, "about"),
+                            GoogleId = DbUtils.GetString(reader, "googleId"),
+                            PageCount = DbUtils.GetInt(reader, "pageCount"),
+                            PublishDate = DbUtils.GetString(reader, "publishDate"),
+                            AverageRating = reader.GetDouble(reader.GetOrdinal("averageRating")),
+                            RatingCount = DbUtils.GetInt(reader, "RatingCount"),
+                            Authors = new List<string>()
+                            {
+                                reader.GetString(reader.GetOrdinal("Authors"))
+                            }
+                            
+                        };
+                    }
+
+                    reader.Close();
+                    return book;
+                }
+            }
+        }
+
 
         public void Add(Book book)
         {
@@ -144,7 +198,8 @@ namespace BestReads.Repositories
                     DbUtils.AddParameter(cmd, "@title", book.Title);
                     DbUtils.AddParameter(cmd, "@imageLocation", book.ImageLocation);
                     DbUtils.AddParameter(cmd, "@about", book.About);
-                    DbUtils.AddParameter(cmd, "@googleId", book.Authors);
+                    DbUtils.AddParameter(cmd, "@googleId", book.GoogleId);
+                    DbUtils.AddParameter(cmd, "@authors", book.Authors[0]);
                     DbUtils.AddParameter(cmd, "@pageCount", book.PageCount);
                     DbUtils.AddParameter(cmd, "@publishDate", book.PublishDate);
                     DbUtils.AddParameter(cmd, "@averageRating", book.AverageRating);

@@ -9,23 +9,14 @@ namespace BestReads.Models
     public class Book
     {
         public int Id { get; set; }
-       
         public string GoogleId { get; set; }
         public string Title { get; set; }
-        [DataType(DataType.Url)]
-        [MaxLength(255)]
-        public string ImageLocation { get; set; }
-        
+        public string ImageLocation { get; set; }       
         public string About { get; set; }
         public int PageCount { get; set; }
         public string PublishDate { get; set;}
-        public float AverageRating { get; set; }
+        public double AverageRating { get; set; }
         public int RatingCount { get; set; }
-
-       
         public List<string> Authors { get; set; }
-        public List<Genre> Genres { get; set; }
-        public int GenreId { get; set; }
-        
     }
 }

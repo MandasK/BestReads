@@ -19,14 +19,16 @@ export function BookSearchProvider(props) {
         .then(setBooks)
       );
 
-    const getSelectedBook = (googleId) =>
-        
+    const getSelectedBook = (googleId) => 
+        getToken().then((token) => 
             fetch(`/books/${googleId}/?googleId=${googleId}`, {
-                method: "GET"
-                
-            }).then((res) => res.json())
-                .then(setBook)
-            
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(res => res.json()
+                .then(setBook)))
+        
 
 
   return(
