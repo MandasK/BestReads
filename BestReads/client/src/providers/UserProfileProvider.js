@@ -13,7 +13,7 @@ export function UserProfileProvider(props) {
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState([]);
-    const [aUser, setAUser] = useState([]);
+    const [aUser, setAUser] = useState({});
     useEffect(() => {
       firebase.auth().onAuthStateChanged((u) => {
         setIsFirebaseReady(true);
@@ -93,15 +93,16 @@ export function UserProfileProvider(props) {
       };
 
       const getUserById = (id) => {
-        return getToken().then((token) =>
+       return getToken().then((token) =>
         fetch(`${apiUrl}/${id}/details`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         }).then((resp) => resp.json())
         .then(setAUser)
-        );
+        )
       };
+      
 
       const updateUser = (user) =>
         getToken().then((token) =>

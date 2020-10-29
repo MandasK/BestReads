@@ -10,7 +10,7 @@ namespace BestReads.Models
     public class Genre
     {
         public int ID { get; set; }
-        [Required]
-        public int Name { get; set; }
+        
+        public string Name { get; set; }
     }
 }
