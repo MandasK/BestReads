@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import { UserProfileContext, UserProfileCOntext } from './UserProfileProvider';
+import { UserProfileContext } from './UserProfileProvider';
 
 export const BookContext = React.createContext();
 

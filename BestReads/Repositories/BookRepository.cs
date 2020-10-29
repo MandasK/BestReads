@@ -46,10 +46,10 @@ namespace BestReads.Repositories
                             ImageLocation = DbUtils.GetString(reader, "imageLocation"),
                             About = DbUtils.GetString(reader, "about"),
                             GoogleId = DbUtils.GetString(reader, "googleId"),
-                            PageCount = DbUtils.GetInt(reader, "pageCount"),
+                            PageCount = DbUtils.GetNullableInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = reader.GetDouble(reader.GetOrdinal("averageRating")),
-                            RatingCount = DbUtils.GetInt(reader, "RatingCount"),
+                            AverageRating = DbUtils.GetNullableDouble(reader, "averageRating"),
+                            RatingCount = DbUtils.GetNullableInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
                             DbUtils.GetString(reader, "authors"),
@@ -99,10 +99,10 @@ namespace BestReads.Repositories
                             ImageLocation = DbUtils.GetString(reader, "imageLocation"),
                             About = DbUtils.GetString(reader, "about"),
                             GoogleId = DbUtils.GetString(reader, "googleId"),
-                            PageCount = DbUtils.GetInt(reader, "pageCount"),
+                            PageCount = DbUtils.GetNullableInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = reader.GetDouble(reader.GetOrdinal("averageRating")),
-                            RatingCount = DbUtils.GetInt(reader, "RatingCount"),
+                            AverageRating = DbUtils.GetNullableDouble(reader, "averageRating"),
+                            RatingCount = DbUtils.GetNullableInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
                                 DbUtils.GetString(reader, "authors"),
@@ -150,10 +150,10 @@ namespace BestReads.Repositories
                             ImageLocation = DbUtils.GetString(reader, "imageLocation"),
                             About = DbUtils.GetString(reader, "about"),
                             GoogleId = DbUtils.GetString(reader, "googleId"),
-                            PageCount = DbUtils.GetInt(reader, "pageCount"),
+                            PageCount = DbUtils.GetNullableInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = reader.GetDouble(reader.GetOrdinal("averageRating")),
-                            RatingCount = DbUtils.GetInt(reader, "RatingCount"),
+                            AverageRating = DbUtils.GetNullableDouble(reader, "averageRating"),
+                            RatingCount = DbUtils.GetNullableInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
                                 reader.GetString(reader.GetOrdinal("Authors"))

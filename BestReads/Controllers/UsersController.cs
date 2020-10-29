@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BestReads.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase

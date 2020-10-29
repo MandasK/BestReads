@@ -57,7 +57,7 @@ export const SubscriptionProvider = (props) => {
             }));
 
     return(
-        <SubscriptionContext.Provider value={{ subscriptions, addSubscription, unSubscribe, getReleventSubscriptions,getUserSubscriptions, getToken }}>
+        <SubscriptionContext.Provider value={{ subscriptions, addSubscription, unSubscribe, getReleventSubscriptions, getUserSubscriptions, getToken }}>
             {props.children}
         </SubscriptionContext.Provider>
     )        

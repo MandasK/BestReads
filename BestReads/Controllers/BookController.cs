@@ -57,8 +57,7 @@ namespace BestReads.Controllers
             if(bookCheck == null)
             {
                 _bookRepo.Add(book);
-                return Ok();
-                //return CreatedAtAction("Get", new { id = book.Id }, book);
+                return Ok(book);
             }
             return Ok(bookCheck);
 
