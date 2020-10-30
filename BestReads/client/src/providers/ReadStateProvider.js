@@ -60,7 +60,7 @@ export const ReadStateProvider = (props) => {
 
     const editReadState = (rState) =>
         getToken().then((token) =>
-            fetch(`/api/post/${post.id}`, {
+            fetch(`/api/post/${rState.id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ export const ReadStateProvider = (props) => {
     
     return(
         <ReadStateContext.Provider value={{ readState, readStates, getAllReadStateForUser, getAllReadStates, getReadStateById, addReadState, editReadState }}>
-            {props.children}
+            {props.childrenadd}
         </ReadStateContext.Provider>
     )    
 

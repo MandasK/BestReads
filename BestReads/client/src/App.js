@@ -17,14 +17,14 @@ function App() {
      <UserProfileProvider>
      <SubscriptionProvider>
        <BookSearchProvider>
-       <BookProvider>
-         <ReadStateProvider>
+       <ReadStateProvider>
            <ReviewProvider>
-       <Header />
-       <ApplicationViews />
+       <BookProvider>
+          <Header />
+        <ApplicationViews />
+       </BookProvider>  
        </ReviewProvider>
        </ReadStateProvider>
-       </BookProvider>  
        </BookSearchProvider>
        </SubscriptionProvider>
      </UserProfileProvider>

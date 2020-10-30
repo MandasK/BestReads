@@ -33,7 +33,7 @@ const AddBook = () => {
         };
 
         addBook(newBook).then((res) => {
-            history.push(`/books/${res.id}`)
+            history.push(`/books/${res.id}/state`)
         });
     }
     

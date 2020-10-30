@@ -10,6 +10,7 @@ import BookSearch from "./Books/BookSearch";
 import AddBook from "./Books/AddBook";
 import UserList from './Users/UserList';
 import UserDetails from './Users/UserDetails';
+import AddBookReadState from './Books/AddBookReadState'
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -38,6 +39,9 @@ export default function ApplicationViews() {
         </Route>
         <Route path="/users/:id/details" exact>
           {isLoggedIn ? <UserDetails /> : <Redirect to="/login" />}
+        </Route>.
+        <Route path="/myProfile/:id" exact>
+          {isLoggedIn ? <AddBookReadState /> : <Redirect to="/login" />}
         </Route>
 
         
