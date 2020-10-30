@@ -36,7 +36,7 @@ namespace BestReads.Controllers
             return Ok(_readStateRepository.GetAllReadStates());
         }
 
-        [HttpGet("{currentUserId}")]
+        [HttpGet("{currentUserId}/currentUserBooks")]
         public IActionResult GetAllBooksForUser()
         {
             var currentUser = GetCurrentUser();

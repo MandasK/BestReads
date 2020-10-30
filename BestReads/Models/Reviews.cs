@@ -15,7 +15,7 @@ namespace BestReads.Models
         [Required]
         public int Rating { get; set; }
         [Required]
-        public int StateId { get; set; }
-        public State State { get; set; }
+        public int ReadStateId { get; set; }
+        public ReadState ReadState { get; set; }
     }
 }
