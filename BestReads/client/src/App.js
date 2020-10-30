@@ -7,6 +7,8 @@ import './App.css';
 import { BookSearchProvider } from './providers/BookSearchProvider';
 import { BookProvider } from './providers/BookProvider';
 import { SubscriptionProvider } from './providers/SubscriptionProvider';
+import { ReadStateContext, ReadStateProvider } from './providers/ReadStateProvider';
+import { ReviewProvider } from './providers/ReviewProvider';
 
 function App() {
   return (
@@ -16,8 +18,12 @@ function App() {
      <SubscriptionProvider>
        <BookSearchProvider>
        <BookProvider>
+         <ReadStateProvider>
+           <ReviewProvider>
        <Header />
        <ApplicationViews />
+       </ReviewProvider>
+       </ReadStateProvider>
        </BookProvider>  
        </BookSearchProvider>
        </SubscriptionProvider>

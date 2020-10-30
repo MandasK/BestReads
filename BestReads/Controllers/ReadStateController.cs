@@ -37,10 +37,8 @@ namespace BestReads.Controllers
         }
 
         [HttpGet("{currentUserId}/currentUserBooks")]
-        public IActionResult GetAllBooksForUser()
+        public IActionResult GetAllBooksForUser(int currentUserId)
         {
-            var currentUser = GetCurrentUser();
-            int currentUserId = currentUser.Id;
             var readState = _readStateRepository.GetAllUserReadStates(currentUserId);
             return Ok(readState);
         }
@@ -57,7 +55,7 @@ namespace BestReads.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(ReadState readState)
+        public IActionResult Add(ReadState readState)
         {
             var readStateCheck = _readStateRepository.GetReadStateById(readState.Id);
             if(readState == null)
@@ -66,6 +64,23 @@ namespace BestReads.Controllers
                 return Ok(readState);
             }
             return Ok(readStateCheck);
+        }
+
+        [HttpPut]
+        public IActionResult Put(int id, ReadState readState)
+        {
+            var currentUserProfile = GetCurrentUser();
+            if(currentUserProfile.Id != _readStateRepository.GetReadStateById(id).UserId)
+            {
+                return Unauthorized();
+            }
+            if (id != readState.Id)
+            {
+                return BadRequest();
+            }
+            _readStateRepository.ChangeState(readState);
+            return Ok();
+
         }
 
 
