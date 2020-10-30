@@ -11,6 +11,7 @@ import AddBook from "./Books/AddBook";
 import UserList from './Users/UserList';
 import UserDetails from './Users/UserDetails';
 import AddBookReadState from './Books/AddBookReadState'
+import { ReadStateProvider } from '../providers/ReadStateProvider';
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -40,8 +41,8 @@ export default function ApplicationViews() {
         <Route path="/users/:id/details" exact>
           {isLoggedIn ? <UserDetails /> : <Redirect to="/login" />}
         </Route>.
-        <Route path="/myProfile/:id" exact>
-          {isLoggedIn ? <AddBookReadState /> : <Redirect to="/login" />}
+        <Route path="/books/:id/state" exact>
+          {isLoggedIn ? <ReadStateProvider><AddBookReadState /></ReadStateProvider>  : <Redirect to="/login" />}
         </Route>
 
         

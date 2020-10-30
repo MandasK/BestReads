@@ -7,7 +7,7 @@ import './App.css';
 import { BookSearchProvider } from './providers/BookSearchProvider';
 import { BookProvider } from './providers/BookProvider';
 import { SubscriptionProvider } from './providers/SubscriptionProvider';
-import { ReadStateContext, ReadStateProvider } from './providers/ReadStateProvider';
+import { ReadStateProvider } from './providers/ReadStateProvider';
 import { ReviewProvider } from './providers/ReviewProvider';
 
 function App() {
@@ -15,20 +15,16 @@ function App() {
     <div className="App">
    <Router>
      <UserProfileProvider>
-     <SubscriptionProvider>
-       <BookSearchProvider>
-       <ReadStateProvider>
-           <ReviewProvider>
-       <BookProvider>
-          <Header />
-        <ApplicationViews />
-       </BookProvider>  
-       </ReviewProvider>
-       </ReadStateProvider>
-       </BookSearchProvider>
-       </SubscriptionProvider>
-     </UserProfileProvider>
-   </Router>
+        <SubscriptionProvider>
+          <BookSearchProvider>
+            <BookProvider>
+                  <Header />
+                  <ApplicationViews />
+            </BookProvider>  
+          </BookSearchProvider>
+              </SubscriptionProvider>
+      </UserProfileProvider>
+    </Router>
    </div>
   );
 }
