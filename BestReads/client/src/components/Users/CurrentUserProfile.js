@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState, } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
-import { useHistory } from 'react-router-dom';
-import { Card, CardImg, CardBody, Button, Row, Col, Table } from 'reactstrap';
+import { useHistory, Link } from 'react-router-dom';
+import { Card, CardImg, CardBody, Button, Row, Col, Table, Spinner } from 'reactstrap';
 import "./UserProfile.css"
 
 const CurrentUserProfile = () => {
@@ -10,6 +10,8 @@ const CurrentUserProfile = () => {
     const { getAllReadStateForUser, readStates } =useContext(ReadStateContext);
     const [isloading, setIsLoading] = useState(false);
     const history = useHistory();
+    const clientuser = JSON.parse(sessionStorage.getItem('userProfile'))
+    const newCurrentUser = parseInt(clientuser.id)
 
     useEffect(() => {
         getCurrentUser(JSON.parse(sessionStorage.getItem("userProfile")).firebaseUserId)
@@ -17,13 +19,15 @@ const CurrentUserProfile = () => {
     }, []);
 
     useEffect(() => {
-
-    })
+        getAllReadStateForUser(clientuser.id)
+    }, []);
 
     if(!currentUser) {
         return null;
     }
 
+    if(isloading)
+    {
     return (
         <div>
             <Card style={{ border: "none", width: "30%", height:"50%"}} className="smallUserDetailContainer">
@@ -50,11 +54,23 @@ const CurrentUserProfile = () => {
                        <th>Author</th>
                     </tr>
                 </thead>
-                {}
+                {readStates.map((readState) => (
+                   <tbody style={{background: "#FFFFF6"}}>
+                   <tr>
+                       <td><Link to={`/bookList/${readState.id}/details`}>{readState.state.title}</Link></td>
+                       <td>{readState.book.title}</td>
+                       <td>{readState.authors}</td>
+                   </tr>
+               </tbody>
+                ))}
                 
             </Table>
         </div>
     )
+    }
+    else {
+        return <Spinner className="app-spinner dark"/>
+    }
 }
 
 export default CurrentUserProfile;

@@ -58,27 +58,27 @@ namespace BestReads.Repositories
                     {
                         readStates.Add(new ReadState()
                         {
-                            Id = DbUtils.GetInt(reader, "rs.Id"),
+                            Id = DbUtils.GetInt(reader, "Id"),
                             State = new State()
                             {
-                                ID= DbUtils.GetInt(reader, "rs.StateId"),
+                                ID= DbUtils.GetInt(reader, "StateId"),
                                 Title= DbUtils.GetString(reader, "StateTitle"),
                             },
                             User = new Users()
                             {
-                                Id= DbUtils.GetInt(reader, "rs.StateId"),
-                                Name= DbUtils.GetString(reader, "u.Name"),
-                                DisplayName= DbUtils.GetString(reader, "u.DisplayName"),
-                                Bio= DbUtils.GetString(reader, "u.Bio"),
+                                Id= DbUtils.GetInt(reader, "StateId"),
+                                Name= DbUtils.GetString(reader, "Name"),
+                                DisplayName= DbUtils.GetString(reader, "DisplayName"),
+                                Bio= DbUtils.GetString(reader, "Bio"),
                                 ImageLocation= DbUtils.GetString(reader, "UserImageLocation"),
                             },
                             Book = new Book()
                             {
-                                Id= DbUtils.GetInt(reader, "rs.BookId"),
-                                GoogleId= DbUtils.GetString(reader, "b.GoogleId"),
+                                Id= DbUtils.GetInt(reader, "BookId"),
+                                GoogleId= DbUtils.GetString(reader, "GoogleId"),
                                 Title= DbUtils.GetString(reader, "BookTitle"),
                                 ImageLocation= DbUtils.GetString(reader, "BookImageLocation"),
-                                About= DbUtils.GetString(reader, "b.About"),
+                                About= DbUtils.GetString(reader, "About"),
                                 Authors = new List<string>()
                                     {
                                         reader.GetString(reader.GetOrdinal("Authors"))
@@ -122,27 +122,27 @@ namespace BestReads.Repositories
                     {
                         readStates.Add(new ReadState()
                         {
-                            Id = DbUtils.GetInt(reader, "rs.Id"),
+                            Id = DbUtils.GetInt(reader, "Id"),
                             State = new State()
                             {
-                                ID = DbUtils.GetInt(reader, "rs.StateId"),
+                                ID = DbUtils.GetInt(reader, "StateId"),
                                 Title = DbUtils.GetString(reader, "StateTitle"),
                             },
                             User = new Users()
                             {
-                                Id = DbUtils.GetInt(reader, "rs.StateId"),
-                                Name = DbUtils.GetString(reader, "u.Name"),
-                                DisplayName = DbUtils.GetString(reader, "u.DisplayName"),
-                                Bio = DbUtils.GetString(reader, "u.Bio"),
+                                Id = DbUtils.GetInt(reader, "StateId"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                Bio = DbUtils.GetString(reader, "Bio"),
                                 ImageLocation = DbUtils.GetString(reader, "UserImageLocation"),
                             },
                             Book = new Book()
                             {
-                                Id = DbUtils.GetInt(reader, "rs.BookId"),
-                                GoogleId = DbUtils.GetString(reader, "b.GoogleId"),
+                                Id = DbUtils.GetInt(reader, "BookId"),
+                                GoogleId = DbUtils.GetString(reader, "GoogleId"),
                                 Title = DbUtils.GetString(reader, "BookTitle"),
                                 ImageLocation = DbUtils.GetString(reader, "BookImageLocation"),
-                                About = DbUtils.GetString(reader, "b.About"),
+                                About = DbUtils.GetString(reader, "About"),
                                 Authors = new List<string>()
                                 {
                                     reader.GetString(reader.GetOrdinal("Authors"))
@@ -185,27 +185,27 @@ namespace BestReads.Repositories
                     {
                         readState = new ReadState()
                         {
-                            Id = DbUtils.GetInt(reader, "rs.Id"),
+                            Id = DbUtils.GetInt(reader, "Id"),
                             State = new State()
                             {
-                                ID = DbUtils.GetInt(reader, "rs.StateId"),
+                                ID = DbUtils.GetInt(reader, "StateId"),
                                 Title = DbUtils.GetString(reader, "StateTitle"),
                             },
                             User = new Users()
                             {
-                                Id = DbUtils.GetInt(reader, "rs.StateId"),
-                                Name = DbUtils.GetString(reader, "u.Name"),
-                                DisplayName = DbUtils.GetString(reader, "u.DisplayName"),
-                                Bio = DbUtils.GetString(reader, "u.Bio"),
+                                Id = DbUtils.GetInt(reader, "StateId"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                Bio = DbUtils.GetString(reader, "Bio"),
                                 ImageLocation = DbUtils.GetString(reader, "UserImageLocation"),
                             },
                             Book = new Book()
                             {
-                                Id = DbUtils.GetInt(reader, "rs.BookId"),
-                                GoogleId = DbUtils.GetString(reader, "b.GoogleId"),
+                                Id = DbUtils.GetInt(reader, "BookId"),
+                                GoogleId = DbUtils.GetString(reader, "GoogleId"),
                                 Title = DbUtils.GetString(reader, "BookTitle"),
                                 ImageLocation = DbUtils.GetString(reader, "BookImageLocation"),
-                                About = DbUtils.GetString(reader, "b.About"),
+                                About = DbUtils.GetString(reader, "About"),
                                 Authors = new List<string>()
                                 {
                                     reader.GetString(reader.GetOrdinal("Authors"))
