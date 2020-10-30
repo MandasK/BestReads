@@ -47,8 +47,6 @@ namespace BestReads.Services
                     About = book.volumeInfo?.description,
                     PageCount = book.volumeInfo.pageCount,
                     PublishDate = book.volumeInfo?.publishedDate,
-                    AverageRating = book.volumeInfo.averageRating,
-                    RatingCount = book.volumeInfo.ratingsCount,
                     Authors = book.volumeInfo?.authors
 
                 }).ToList();
@@ -83,8 +81,6 @@ namespace BestReads.Services
                     About = openBookResponse.volumeInfo?.description,
                     PageCount = openBookResponse.volumeInfo.pageCount,
                     PublishDate = openBookResponse.volumeInfo?.publishedDate,
-                    AverageRating = openBookResponse.volumeInfo.averageRating,
-                    RatingCount = openBookResponse.volumeInfo.ratingsCount,
                     Authors = openBookResponse.volumeInfo?.authors
                 };
 

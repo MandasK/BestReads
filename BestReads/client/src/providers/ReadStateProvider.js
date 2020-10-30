@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { UserProfileContext, userProfileContext } from './UserProfileProvider';
+import { UserProfileContext } from './UserProfileProvider';
 
 export const ReadStateContext = React.createContext();
 
@@ -44,7 +44,7 @@ export const ReadStateProvider = (props) => {
 
     const addReadState = (rState) =>
         getToken().then((token) =>
-            fetch("/api/post/", {
+            fetch(apiUrl, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ export const ReadStateProvider = (props) => {
 
     const editReadState = (rState) =>
         getToken().then((token) =>
-            fetch(`/api/post/${rState.id}`, {
+            fetch(`${apiUrl}/${rState.id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ export const ReadStateProvider = (props) => {
     
     return(
         <ReadStateContext.Provider value={{ readState, readStates, getAllReadStateForUser, getAllReadStates, getReadStateById, addReadState, editReadState }}>
-            {props.childrenadd}
+            {props.children}
         </ReadStateContext.Provider>
     )    
 

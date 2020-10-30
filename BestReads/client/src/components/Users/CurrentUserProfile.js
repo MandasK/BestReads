@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState, } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
+import { ReadStateContext } from '../../providers/ReadStateProvider';
 import { useHistory } from 'react-router-dom';
-import { Card, CardImg, CardBody, Button, Row, Col } from 'reactstrap';
+import { Card, CardImg, CardBody, Button, Row, Col, Table } from 'reactstrap';
 import "./UserProfile.css"
 
 const CurrentUserProfile = () => {
     const { currentUser, getCurrentUser } = useContext(UserProfileContext);
+    const { getAllReadStateForUser, readStates } =useContext(ReadStateContext);
     const [isloading, setIsLoading] = useState(false);
     const history = useHistory();
 
@@ -13,6 +15,10 @@ const CurrentUserProfile = () => {
         getCurrentUser(JSON.parse(sessionStorage.getItem("userProfile")).firebaseUserId)
         .then(() => setIsLoading(true))
     }, []);
+
+    useEffect(() => {
+
+    })
 
     if(!currentUser) {
         return null;
@@ -35,8 +41,18 @@ const CurrentUserProfile = () => {
                 </Col>
                 </CardBody>
                 </Row>
-                
             </Card>
+            <Table>
+                <thead>
+                    <tr>
+                       <th>Book List</th>
+                       <th>Book</th> 
+                       <th>Author</th>
+                    </tr>
+                </thead>
+                {}
+                
+            </Table>
         </div>
     )
 }

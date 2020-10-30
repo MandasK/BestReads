@@ -6,13 +6,14 @@ import { CardHeader, Card, Spinner, CardImg, CardBody, Button, Row } from 'react
 
 const AddBook = () => {
     const { getSelectedBook, book } = useContext(BookSearchContext);
-    const { addBook } = useContext(BookContext);
+    const { addBook, abook, getBookById  } = useContext(BookContext);
     const [isLoading, setIsLoading] = useState(false);
     const {googleId} = useParams();
     const history = useHistory();
     
     useEffect(() => {
-        getSelectedBook(googleId).then(() => setIsLoading(true))
+        getSelectedBook(googleId)
+        .then(() => setIsLoading(true))
     }, []);
 
     let bookauthor = book.authors;
@@ -32,8 +33,9 @@ const AddBook = () => {
            authors: bookauthor
         };
 
-        addBook(newBook).then((res) => {
-            history.push(`/books/${res.id}/state`)
+        addBook(newBook)
+        .then((res) => {
+            history.push(`/books/${res.id}/Addstate`)
         });
     }
     

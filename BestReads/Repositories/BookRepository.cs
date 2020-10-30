@@ -28,9 +28,7 @@ namespace BestReads.Repositories
                                authors,
                                googleId,
                                pageCount, 
-                               publishDate, 
-                               averageRating,
-                               RatingCount
+                               publishDate
                         FROM Books
                         ORDER BY title
                                       ";
@@ -48,8 +46,6 @@ namespace BestReads.Repositories
                             GoogleId = DbUtils.GetString(reader, "googleId"),
                             PageCount = DbUtils.GetNullableInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = DbUtils.GetNullableDouble(reader, "averageRating"),
-                            RatingCount = DbUtils.GetNullableInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
                             DbUtils.GetString(reader, "authors"),
@@ -79,9 +75,7 @@ namespace BestReads.Repositories
                                authors,
                                googleId,
                                pageCount, 
-                               publishDate, 
-                               averageRating,
-                               RatingCount
+                               publishDate
                         FROM Books
                         Where id = @id
                                        ";
@@ -101,8 +95,6 @@ namespace BestReads.Repositories
                             GoogleId = DbUtils.GetString(reader, "googleId"),
                             PageCount = DbUtils.GetNullableInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = DbUtils.GetNullableDouble(reader, "averageRating"),
-                            RatingCount = DbUtils.GetNullableInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
                                 DbUtils.GetString(reader, "authors"),
@@ -130,9 +122,7 @@ namespace BestReads.Repositories
                                authors,
                                googleId,
                                pageCount, 
-                               publishDate, 
-                               averageRating,
-                               RatingCount
+                               publishDate
                         FROM Books
                         Where googleId = @googleId
                                        ";
@@ -152,8 +142,6 @@ namespace BestReads.Repositories
                             GoogleId = DbUtils.GetString(reader, "googleId"),
                             PageCount = DbUtils.GetNullableInt(reader, "pageCount"),
                             PublishDate = DbUtils.GetString(reader, "publishDate"),
-                            AverageRating = DbUtils.GetNullableDouble(reader, "averageRating"),
-                            RatingCount = DbUtils.GetNullableInt(reader, "RatingCount"),
                             Authors = new List<string>()
                             {
                                 reader.GetString(reader.GetOrdinal("Authors"))
@@ -182,9 +170,7 @@ namespace BestReads.Repositories
                                                            authors,
                                                            googleId,
                                                            pageCount, 
-                                                           publishDate, 
-                                                           averageRating,
-                                                           RatingCount)
+                                                           publishDate)
                                         OUTPUT INSERTED.ID
                                         VALUES (@title, 
                                                @imageLocation, 
@@ -192,9 +178,7 @@ namespace BestReads.Repositories
                                                @authors,
                                                @googleId,
                                                @pageCount, 
-                                               @publishDate, 
-                                               @averageRating,
-                                               @RatingCount)";
+                                               @publishDate)";
                     DbUtils.AddParameter(cmd, "@title", book.Title);
                     DbUtils.AddParameter(cmd, "@imageLocation", book.ImageLocation);
                     DbUtils.AddParameter(cmd, "@about", book.About);
@@ -202,8 +186,6 @@ namespace BestReads.Repositories
                     DbUtils.AddParameter(cmd, "@authors", book.Authors[0]);
                     DbUtils.AddParameter(cmd, "@pageCount", book.PageCount);
                     DbUtils.AddParameter(cmd, "@publishDate", book.PublishDate);
-                    DbUtils.AddParameter(cmd, "@averageRating", book.AverageRating);
-                    DbUtils.AddParameter(cmd, "@RatingCount", book.RatingCount);
 
                     book.Id = (int)cmd.ExecuteScalar();
                 }

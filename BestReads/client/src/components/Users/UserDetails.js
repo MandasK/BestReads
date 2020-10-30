@@ -66,7 +66,8 @@ const UserDetails = (props) => {
         .then(()=> history.push(`/users/${newId}/details`))
         refresh()
         }
-
+        if(isLoading)
+        {
         return (
             <div>
               <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
@@ -103,6 +104,8 @@ const UserDetails = (props) => {
               </Card>  
             </div>
         )
+        }
+            
 
     
    

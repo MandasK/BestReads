@@ -41,8 +41,8 @@ export default function ApplicationViews() {
         <Route path="/users/:id/details" exact>
           {isLoggedIn ? <UserDetails /> : <Redirect to="/login" />}
         </Route>.
-        <Route path="/books/:id/state" exact>
-          {isLoggedIn ? <ReadStateProvider><AddBookReadState /></ReadStateProvider>  : <Redirect to="/login" />}
+        <Route path="/books/:id/AddState" >
+          {isLoggedIn ? <AddBookReadState /> : <Redirect to="/login" />}
         </Route>
 
         

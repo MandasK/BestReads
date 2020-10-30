@@ -41,10 +41,10 @@ namespace BestReads.Repositories
                 using(var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT rs.Id, rs.StateId, rs.BookId, rs.UserId
+                        SELECT rs.Id, rs.StateId, rs.BookId, rs.UserId,
                                s.Title AS StateTitle,
                                u.Name, u.DisplayName, u.Bio, u.ImageLocation as UserImageLocation,
-                               b.GoogleId, b.Title AS BookTitle, b.ImageLocation AS BookImageLocation, b.About, b.Authors
+                               b.GoogleId, b.Title AS BookTitle, b.ImageLocation AS BookImageLocation, b.About, b.Authors,
                                b.PageCount, b.PublishDate
                         FROM ReadState rs
                         LEFT JOIN State s on rs.StateId = s.Id
@@ -101,10 +101,10 @@ namespace BestReads.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT rs.Id, rs.StateId, rs.BookId, rs.UserId
+                        SELECT rs.Id, rs.StateId, rs.BookId, rs.UserId,
                                s.Title AS StateTitle,
                                u.Name, u.DisplayName, u.Bio, u.ImageLocation as UserImageLocation,
-                               b.GoogleId, b.Title AS BookTitle, b.ImageLocation AS BookImageLocation, b.About, b.Authors
+                               b.GoogleId, b.Title AS BookTitle, b.ImageLocation AS BookImageLocation, b.About, b.Authors,
                                b.PageCount, b.PublishDate
                         FROM ReadState rs
                         LEFT JOIN State s on rs.StateId = s.Id
@@ -165,10 +165,10 @@ namespace BestReads.Repositories
                 using(var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT rs.Id, rs.StateId, rs.BookId, rs.UserId
+                        SELECT rs.Id, rs.StateId, rs.BookId, rs.UserId,
                                s.Title AS StateTitle,
                                u.Name, u.DisplayName, u.Bio, u.ImageLocation as UserImageLocation,
-                               b.GoogleId, b.Title AS BookTitle, b.ImageLocation AS BookImageLocation, b.About, b.Authors
+                               b.GoogleId, b.Title AS BookTitle, b.ImageLocation AS BookImageLocation, b.About, b.Authors,
                                b.PageCount, b.PublishDate
                         FROM ReadState rs
                         LEFT JOIN State s on rs.StateId = s.Id

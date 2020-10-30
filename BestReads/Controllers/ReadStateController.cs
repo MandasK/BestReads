@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BestReads.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReadStateController : ControllerBase
@@ -58,7 +59,7 @@ namespace BestReads.Controllers
         public IActionResult Add(ReadState readState)
         {
             var readStateCheck = _readStateRepository.GetReadStateById(readState.Id);
-            if(readState == null)
+            if(readStateCheck == null)
             {
                 _readStateRepository.Add(readState);
                 return Ok(readState);

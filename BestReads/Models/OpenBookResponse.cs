@@ -25,8 +25,6 @@ namespace BestReads.Models
         public string publishedDate { get; set; }
         public string description { get; set; }
         public int? pageCount { get; set; }
-        public double? averageRating { get; set; }
-        public int? ratingsCount { get; set; }
         public Imagelinks imageLinks { get; set; }
     }
 

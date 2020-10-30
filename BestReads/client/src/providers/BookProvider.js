@@ -5,7 +5,7 @@ export const BookContext = React.createContext();
 
 export function BookProvider(props) {
     const [abooks, setABooks] = useState([]);
-    const [abook, setABook] = useState([]);
+    const [abook, setABook] = useState({});
     const { getToken } = useContext(UserProfileContext);
 
     const getAllBooks = () => {
@@ -26,7 +26,7 @@ export function BookProvider(props) {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then((res) => res.json(setABook))
+            }).then((res) => res.json())
             );
 
     const addBook = (book) => 
