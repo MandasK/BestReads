@@ -47,7 +47,7 @@ const BookSearch = () => {
                     </tr>
                 </thead>
             {books.map((book) => (
-                <tbody>
+                <tbody key={book.googleId}>
                     <tr style={{background: "#FFFFF6"}}>
                         <td><Link to={`/book/${book.googleId}/details`}><img src={book.imageLocation} alt={book.title} /></Link></td>
                         <td>{book.title}</td>

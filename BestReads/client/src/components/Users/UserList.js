@@ -27,7 +27,7 @@ const UserList = (props) => {
                     </tr>
                 </thead>
                 {users.map((user) => (
-                    <tbody style={{background: "#FFFFF6"}}>
+                    <tbody key={user.id} style={{background: "#FFFFF6"}}>
                         <tr>
                             <td><Link to={`/users/${user.id}/details`}><img style={{height: "50px", width:"auto"}} src={user.imageLocation} alt={user.name} /></Link></td>
                             <td>{user.displayName}</td>

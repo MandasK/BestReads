@@ -8,6 +8,7 @@ import CurrentUserProfile from "./Users/CurrentUserProfile";
 import EditCurrentUserProfile from "./Users/EditCurrentUserProfile";
 import BookSearch from "./Books/BookSearch";
 import AddBook from "./Books/AddBook";
+import BookDetails from './Books/BookDetails';
 import UserList from './Users/UserList';
 import UserDetails from './Users/UserDetails';
 import AddBookReadState from './Books/AddBookReadState'
@@ -41,8 +42,11 @@ export default function ApplicationViews() {
         <Route path="/users/:id/details" exact>
           {isLoggedIn ? <UserDetails /> : <Redirect to="/login" />}
         </Route>.
-        <Route path="/books/:id/AddState" >
+        <Route path="/books/:id/AddState" exact>
           {isLoggedIn ? <AddBookReadState /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/bookList/:readStateId/details">
+          {isLoggedIn ? <BookDetails /> : <Redirect to="/login" />}
         </Route>
 
         

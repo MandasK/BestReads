@@ -39,23 +39,23 @@ namespace BestReads.Repositories
                     {
                         reviews.Add(new Reviews
                         {
-                            Id = DbUtils.GetInt(reader, "r.Id"),
-                            Content = DbUtils.GetString(reader, "r.Content"),
-                            Rating = DbUtils.GetInt(reader, "r.Rating"),
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Content = DbUtils.GetString(reader, "Content"),
+                            Rating = DbUtils.GetInt(reader, "Rating"),
                             ReadState = new ReadState()
                             {
-                                Id = DbUtils.GetInt(reader, "r.ReadStateId"),
-                                BookId = DbUtils.GetInt(reader, "rs.BookId"),
+                                Id = DbUtils.GetInt(reader, "ReadStateId"),
+                                BookId = DbUtils.GetInt(reader, "BookId"),
                                 State = new State()
                                 {
-                                    ID= DbUtils.GetInt(reader, "rs.StateId"),
-                                    Title= DbUtils.GetString(reader, "rs.title")
+                                    ID= DbUtils.GetInt(reader, "StateId"),
+                                    Title= DbUtils.GetString(reader, "title")
                                 },
                                 User = new Users()
                                 {
-                                    Id = DbUtils.GetInt(reader, "rs.UserId"),
-                                    Name= DbUtils.GetString(reader, "u.Name"),
-                                    DisplayName= DbUtils.GetString(reader, "u.DisplayName")
+                                    Id = DbUtils.GetInt(reader, "UserId"),
+                                    Name= DbUtils.GetString(reader, "Name"),
+                                    DisplayName= DbUtils.GetString(reader, "DisplayName")
                                 }
                             }
 
@@ -92,23 +92,23 @@ namespace BestReads.Repositories
                     {
                         reviews.Add(new Reviews
                         {
-                            Id = DbUtils.GetInt(reader, "r.Id"),
-                            Content = DbUtils.GetString(reader, "r.Content"),
-                            Rating = DbUtils.GetInt(reader, "r.Rating"),
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Content = DbUtils.GetString(reader, "Content"),
+                            Rating = DbUtils.GetInt(reader, "Rating"),
                             ReadState = new ReadState()
                             {
-                                Id = DbUtils.GetInt(reader, "r.ReadStateId"),
-                                BookId = DbUtils.GetInt(reader, "rs.BookId"),
+                                Id = DbUtils.GetInt(reader, "ReadStateId"),
+                                BookId = DbUtils.GetInt(reader, "BookId"),
                                 State = new State()
                                 {
-                                    ID = DbUtils.GetInt(reader, "rs.StateId"),
-                                    Title = DbUtils.GetString(reader, "rs.title")
+                                    ID = DbUtils.GetInt(reader, "StateId"),
+                                    Title = DbUtils.GetString(reader, "Ttitle")
                                 },
                                 User = new Users()
                                 {
-                                    Id = DbUtils.GetInt(reader, "rs.UserId"),
-                                    Name = DbUtils.GetString(reader, "u.Name"),
-                                    DisplayName = DbUtils.GetString(reader, "u.DisplayName")
+                                    Id = DbUtils.GetInt(reader, "UserId"),
+                                    Name = DbUtils.GetString(reader, "Name"),
+                                    DisplayName = DbUtils.GetString(reader, "DisplayName")
                                 }
                             }
                         });
@@ -146,23 +146,23 @@ namespace BestReads.Repositories
                     {
                         review = new Reviews()
                         {
-                            Id = DbUtils.GetInt(reader, "r.Id"),
-                            Content = DbUtils.GetString(reader, "r.Content"),
-                            Rating = DbUtils.GetInt(reader, "r.Rating"),
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Content = DbUtils.GetString(reader, "Content"),
+                            Rating = DbUtils.GetInt(reader, "Rating"),
                             ReadState = new ReadState()
                             {
-                                Id = DbUtils.GetInt(reader, "r.ReadStateId"),
-                                BookId = DbUtils.GetInt(reader, "rs.BookId"),
+                                Id = DbUtils.GetInt(reader, "ReadStateId"),
+                                BookId = DbUtils.GetInt(reader, "BookId"),
                                 State = new State()
                                 {
-                                    ID = DbUtils.GetInt(reader, "rs.StateId"),
-                                    Title = DbUtils.GetString(reader, "rs.title")
+                                    ID = DbUtils.GetInt(reader, "StateId"),
+                                    Title = DbUtils.GetString(reader, "title")
                                 },
                                 User = new Users()
                                 {
-                                    Id = DbUtils.GetInt(reader, "rs.UserId"),
-                                    Name = DbUtils.GetString(reader, "u.Name"),
-                                    DisplayName = DbUtils.GetString(reader, "u.DisplayName")
+                                    Id = DbUtils.GetInt(reader, "UserId"),
+                                    Name = DbUtils.GetString(reader, "Name"),
+                                    DisplayName = DbUtils.GetString(reader, "DisplayName")
                                 }
                             }
                         };

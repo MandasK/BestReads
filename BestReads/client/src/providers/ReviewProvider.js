@@ -9,6 +9,8 @@ export const ReviewProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const apiUrl = "/api/reviews";
 
+    //api/reviews/20/getReviewsByBook
+
     const getAllReviews = () =>
         getToken().then((token) =>
             fetch(apiUrl, {

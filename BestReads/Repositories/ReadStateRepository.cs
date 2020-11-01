@@ -206,6 +206,8 @@ namespace BestReads.Repositories
                                 Title = DbUtils.GetString(reader, "BookTitle"),
                                 ImageLocation = DbUtils.GetString(reader, "BookImageLocation"),
                                 About = DbUtils.GetString(reader, "About"),
+                                PublishDate=DbUtils.GetString(reader, "PublishDate"),
+                                PageCount = DbUtils.GetNullableInt(reader, "PageCount"),
                                 Authors = new List<string>()
                                 {
                                     reader.GetString(reader.GetOrdinal("Authors"))
@@ -235,7 +237,7 @@ namespace BestReads.Repositories
                         WHERE Id = @id
                                        ";
                     DbUtils.AddParameter(cmd, "@StateId", readState.StateId);
-                    DbUtils.AddParameter(cmd, "id", readState.Id);
+                    DbUtils.AddParameter(cmd, "@id", readState.Id);
 
                     cmd.ExecuteNonQuery();
                 }

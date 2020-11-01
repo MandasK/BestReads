@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BestReads.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewsController : ControllerBase
@@ -48,14 +49,13 @@ namespace BestReads.Controllers
         [HttpPost]
         public IActionResult Add(Reviews review)
         {
-            var currentUserProfile = GetCurrentUser();
-            if(currentUserProfile == null)
+            var reviewCheck = _reviewsRepository.GetReviewById(review.Id);
+            if (reviewCheck == null)
             {
-                return Unauthorized();
-
+                _reviewsRepository.Add(review);
+                return Ok(review);
             }
-            _reviewsRepository.Add(review);
-            return base.Created("", review);
+            return Ok(reviewCheck);
         }
 
         [HttpPut]

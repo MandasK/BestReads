@@ -33,14 +33,13 @@ export const ReadStateProvider = (props) => {
 
     const getReadStateById = (id) => 
     getToken().then((token) =>
-    fetch(`${apiUrl}/${id}`, {
+    fetch(`${apiUrl}/${id}/details`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
         }
     }).then((res) => res.json())
-        .then(setReadState)
-    );
+        .then(setReadState));
 
     const addReadState = (rState) =>
         getToken().then((token) =>
@@ -60,7 +59,7 @@ export const ReadStateProvider = (props) => {
 
     const editReadState = (rState) =>
         getToken().then((token) =>
-            fetch(`${apiUrl}/${rState.id}`, {
+            fetch(`${apiUrl}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,

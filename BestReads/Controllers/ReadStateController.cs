@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BestReads.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReadStateController : ControllerBase
@@ -44,7 +44,7 @@ namespace BestReads.Controllers
             return Ok(readState);
         }
         
-        [HttpGet("{id}")]
+        [HttpGet("{id}/details")]
         public IActionResult GetById(int id)
         {
             var readState = _readStateRepository.GetReadStateById(id);
@@ -68,14 +68,9 @@ namespace BestReads.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(int id, ReadState readState)
+        public IActionResult Put(ReadState readState)
         {
-            var currentUserProfile = GetCurrentUser();
-            if(currentUserProfile.Id != _readStateRepository.GetReadStateById(id).UserId)
-            {
-                return Unauthorized();
-            }
-            if (id != readState.Id)
+            if (readState == null)
             {
                 return BadRequest();
             }
