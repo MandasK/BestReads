@@ -3,7 +3,7 @@ import { UserProfileContext } from './UserProfileProvider';
 
 export const ReviewContext = React.createContext();
 
-export const ReviewProvider = (props) => {
+export function ReviewProvider(props) {
     const[reviews, setReviews] = useState([]);
     const[review, setReview] = useState({});
     const { getToken } = useContext(UserProfileContext);
@@ -31,7 +31,7 @@ export const ReviewProvider = (props) => {
                     "Content-type": "application/json"
                 }  
             }).then(res => res.json())
-                .then(setReviews)
+                .then()
             );            
 
     const getReviewById = (id) =>

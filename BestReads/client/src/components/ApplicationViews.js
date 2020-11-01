@@ -24,7 +24,7 @@ export default function ApplicationViews() {
           {isLoggedIn ? <Home /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/myProfile" exact>
+        <Route path="/myProfile">
           {isLoggedIn ? <CurrentUserProfile /> : <Redirect to="/login" />}
         </Route>
         <Route path="/myProfile/edit" exact>
@@ -45,7 +45,7 @@ export default function ApplicationViews() {
         <Route path="/books/:id/AddState" exact>
           {isLoggedIn ? <AddBookReadState /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/bookList/:readStateId/details">
+        <Route path="/books/:readStateId/details" >
           {isLoggedIn ? <BookDetails /> : <Redirect to="/login" />}
         </Route>
 

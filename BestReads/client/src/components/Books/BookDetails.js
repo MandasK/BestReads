@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ReviewContext } from '../../providers/ReviewProvider';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
 import { useParams, useHistory, Link } from 'react-router-dom';
@@ -7,41 +7,27 @@ import AddReviewForm from '../Reviews/AddReviewForm';
 import { Card, Modal, ModalHeader, ModalBody, CardBody, CardImg, Col, Row, Spinner, Button, Table } from 'reactstrap';
 import comingsoon from '../../Images/comingsoon.png'
 
+
 const BookDetails = () => {
-    const { getReadStateById, readState } = useContext(ReadStateContext);
-    const { getReviewsByBookId, reviews, deleteReview } = useContext(ReviewContext);
+    const { getReadStateById } = useContext(ReadStateContext);
+    const { getReviewsByBookId, reviews } = useContext(ReviewContext);
     const [isLoading, setIsLoading] = useState(false);
-    const [editModal, showEdit] = useState(false)
+    const [readState, setReadState] = useState({});
+    const [editModal, showEdit] = useState(false);
     const [reviewEditModal, showReviewEdit] = useState(false);
-    const [addModal, showAdd] = useState(false)
-    const [deleteModal, showDelete] = useState(false)
+    const [addModal, showAdd] = useState(false);
+    const [deleteModal, showDelete] = useState(false);
     const { readStateId } = useParams();
+    const id= readStateId;
     const history = useParams();
     const clientUser = JSON.parse(sessionStorage.getItem('userProfile'));
 
-    useEffect(() => {
-        setIsLoading(false)
-        getReadStateById(readStateId)
-        .then(() => setIsLoading(true))
-    }, [readStateId])
-   
-    useEffect(() => {
-        getReviewsByBookId(readState.book.id)
-    }, [])
-
-    // const confirmReviewDelete = () => {
-    //     showDelete(false)
-    //     deleteReview(areview.id)
-    // }
-    
-
-   
-
     const editModalToggle = () => showEdit(!editModal)
     const addModalToggle = () => showAdd(!addModal)
-
     const editReviewToggle = () => showReviewEdit(!reviewEditModal)
     const deleteToggle = () => showDelete(!deleteModal)
+
+    
     
 
     const renderModal = (readState) => {
@@ -75,7 +61,10 @@ const BookDetails = () => {
             </>
         )
     }
-
+    useEffect(() => {
+        getReadStateById(readStateId)
+            .then(() => setIsLoading(true))
+    }, [])
 
     if(isLoading)
     {
@@ -95,6 +84,7 @@ const BookDetails = () => {
                         
                             <h3><strong>Title:</strong> {readState.book.title}</h3>
                             <div><strong>Pages:</strong> {readState.book.pageCount}</div>
+                            <div><strong>Pages:</strong> {readState.book.id}</div>
                             <div><strong>Publish Date:</strong> {readState.book.publishDate}</div>
                             <div><strong>Author(s):</strong> {readState.book.authors}</div>
                             <br></br>
@@ -123,7 +113,6 @@ const BookDetails = () => {
                         <tr>
                             <td>{areview.rating}</td>
                             <td>{areview.content}</td>
-                            
                             <td>{areview.state.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showReviewEdit(true)}>Edit</Button> : ""}</td>
                             <td>{areview.state.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showDelete(true)}>Delete</Button> : ""}</td>
                             {renderReviewModal(areview)}
@@ -142,4 +131,4 @@ else {
      }
 }
 
-export default BookDetails
+export default BookDetails;

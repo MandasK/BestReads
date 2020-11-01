@@ -57,7 +57,7 @@ const CurrentUserProfile = () => {
                 {readStates.map((readState) => (
                    <tbody key={readState.id} style={{background: "#FFFFF6"}}>
                    <tr>
-                       <td><Link to={`/bookList/${readState.id}/details`}>{readState.state.title}</Link></td>
+                       <td><Link to={`/books/${readState.id}/details`}>{readState.state.title}</Link></td>
                        <td>{readState.book.title}</td>
                        <td>{readState.authors}</td>
                    </tr>
