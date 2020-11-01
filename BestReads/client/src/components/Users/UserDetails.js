@@ -5,10 +5,11 @@ import {SubscriptionContext} from '../../providers/SubscriptionProvider';
 import { CardImg, Spinner, Card, CardBody, Row, Col, Button } from 'reactstrap';
 
 const UserDetails = (props) => {
-    const { getUserById, getCurrentUser, currentuser, aUser } = useContext(UserProfileContext);
+    const { getUserById, getCurrentUser } = useContext(UserProfileContext);
     const { addSubscription, getReleventSubscriptions, unSubscribe, subscriptions } = useContext(SubscriptionContext);
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [isUser, setIsUser] = useState(false);
+    const [aUser, setAUser] = useState({});
     const [currentSubscription, setCurrentSubscription] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
@@ -28,6 +29,9 @@ const UserDetails = (props) => {
 
     useEffect(() => {
         getUserById(id)
+        .then((aUser) => {
+            setAUser(aUser)
+        })
     }, []);
 
     useEffect(() => {
@@ -63,11 +67,13 @@ const UserDetails = (props) => {
             ProviderUserProfileId: newId
         }
         addSubscription(newSubscription).then(setCurrentSubscription, setIsSubscribed(true), setIsLoading(false))
-        .then(()=> history.push(`/users/${newId}/details`))
-        refresh()
-        }
-        if(isLoading)
-        {
+        .then(() => {
+            refresh()
+        })
+        
+    }
+        // if(isLoading)
+        // {
         return (
             <div>
               <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
@@ -89,13 +95,14 @@ const UserDetails = (props) => {
                                      }
                                 }>Follow</Button> : <Button disabled={isLoading, !isSubscribed} onClick={(e) => {
                                     e.preventDefault()
-                                    setIsLoading(true)
                                     unSubscribe(currentSubscription)
-                                    refresh()
-                                    .then(setIsSubscribed(false)) 
-                                    
-                                    
+                                    .then(() =>{
+                                        setIsSubscribed(false)})
+                                        .then(() => {
+                                            refresh()
+                                        })
                                         }
+                                    
                                 }>UnFollow</Button>)
                         }
                   </Col>
@@ -104,12 +111,10 @@ const UserDetails = (props) => {
               </Card>  
             </div>
         )
-        }
-            
-
-    
-   
-
+        // }
+        // else {
+        //     return <Spinner className="app-spinner dark"/>
+        // }   
 
 }
 

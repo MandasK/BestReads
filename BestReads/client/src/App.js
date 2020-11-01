@@ -11,8 +11,7 @@ import { ReadStateProvider } from './providers/ReadStateProvider';
 import { ReviewProvider } from './providers/ReviewProvider';
 
 function App() {
-  return (
-    <div className="App">
+  return (  
    <Router>
      <UserProfileProvider>
         <SubscriptionProvider>
@@ -31,7 +30,6 @@ function App() {
               </SubscriptionProvider>
       </UserProfileProvider>
     </Router>
-   </div>
   );
 }
 

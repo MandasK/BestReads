@@ -10,7 +10,6 @@ namespace BestReads.Models
     public class Reviews
     {
         public int Id { get; set; }
-        [Required]
         public string Content { get; set; }
         [Required]
         public int Rating { get; set; }

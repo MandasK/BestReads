@@ -1,10 +1,13 @@
 import React from 'react';
+import UserBookList from './Books/UserBookList';
+import RecBookList from './Reviews/RecBooksList';
 
 
 export default function Home() {
     return (
         <div>
-            <p style={{color: "white"}}>Hi There</p>
+            <UserBookList />
+            <RecBookList />
         </div>
     );
 }

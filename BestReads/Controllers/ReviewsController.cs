@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using BestReads.Models;
 using BestReads.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using BestReads.Services;
-using BestReads.Infrastructure;
-using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BestReads.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewsController : ControllerBase
@@ -40,6 +33,12 @@ namespace BestReads.Controllers
             return Ok(_reviewsRepository.GetReviewById(id));
         }
 
+        [HttpGet("{numberOfPost}/{block}")]
+        public IActionResult Get(int numberOfPost, int block)
+        {
+            return Ok(_reviewsRepository.GetRecommendedBooks(numberOfPost, block));
+        }
+
         [HttpGet("{bookId}/getReviewsByBook")]
         public IActionResult GetReviewsByBookId(int bookId)
         {
@@ -58,27 +57,23 @@ namespace BestReads.Controllers
             return Ok(reviewCheck);
         }
 
-        [HttpPut]
-        public IActionResult Put(int id, Reviews review)
+        [HttpPut("{id}")]
+        public IActionResult Put(Reviews review)
         {
-            var currentUserProfile = GetCurrentUser();
-            if (currentUserProfile.Id != _reviewsRepository.GetReviewById(id).ReadState.UserId)
-            {
-                return Unauthorized();
-            }
-            if(id != review.Id)
+            if (review == null)
             {
                 return BadRequest();
             }
             _reviewsRepository.Update(review);
-            return Ok(review);
+            return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var currentUserProfile = GetCurrentUser();
-            if(currentUserProfile.Id != _reviewsRepository.GetReviewById(id).ReadState.Id)
+            var review = _reviewsRepository.GetReviewById(id);
+            if (currentUserProfile.Id != review.ReadState.User.Id)
             {
                 return Unauthorized();
             }

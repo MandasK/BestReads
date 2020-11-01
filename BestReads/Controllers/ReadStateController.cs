@@ -1,33 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using BestReads.Models;
 using BestReads.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using BestReads.Services;
-using BestReads.Infrastructure;
-using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BestReads.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ReadStateController : ControllerBase
     {
         private readonly IReadStateRepository _readStateRepository;
-        private readonly IBookRepository _bookRepository;
         private readonly IUserRepository _userRepository;
 
 
         public ReadStateController(IReadStateRepository readStateRepository, IBookRepository bookRepository, IUserRepository userRepository)
         {
             _readStateRepository = readStateRepository;
-            _bookRepository = bookRepository;
             _userRepository = userRepository;
         }
 

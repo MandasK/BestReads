@@ -72,6 +72,7 @@ namespace BestReads.Repositories
                                 Bio= DbUtils.GetString(reader, "Bio"),
                                 ImageLocation= DbUtils.GetString(reader, "UserImageLocation"),
                             },
+                            BookId = DbUtils.GetInt(reader, "BookId"),
                             Book = new Book()
                             {
                                 Id= DbUtils.GetInt(reader, "BookId"),

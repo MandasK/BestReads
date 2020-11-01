@@ -47,7 +47,7 @@ const CurrentUserProfile = () => {
                 </Row>
             </Card>
             <Table>
-                <thead>
+                <thead style={{background: "#FFFFF6"}}>
                     <tr>
                        <th>Book List</th>
                        <th>Book</th> 

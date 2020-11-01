@@ -4,8 +4,9 @@ import { UserProfileContext } from './UserProfileProvider';
 export const ReviewContext = React.createContext();
 
 export function ReviewProvider(props) {
+    
     const[reviews, setReviews] = useState([]);
-    const[review, setReview] = useState({});
+    const [recBooks, setRecBooks] = useState([]);
     const { getToken } = useContext(UserProfileContext);
     const apiUrl = "/api/reviews";
 
@@ -31,7 +32,6 @@ export function ReviewProvider(props) {
                     "Content-type": "application/json"
                 }  
             }).then(res => res.json())
-                .then()
             );            
 
     const getReviewById = (id) =>
@@ -42,8 +42,18 @@ export function ReviewProvider(props) {
                     Authorization: `Bearer ${token}`
                 }
             }).then(res => res.json())
-                .then(setReview)
-            );        
+            );   
+            
+    const getRecBooks = (num, block) => {
+        getToken().then((token) =>
+            fetch(`${apiUrl}/${num}/${block}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json())
+                .then(setRecBooks))
+        };        
     
     const addReview = (review) =>
         getToken().then((token) =>
@@ -63,16 +73,15 @@ export function ReviewProvider(props) {
             );
             
     const editReview = (review) =>
-        getToken().then((token) =>
-            fetch(`${apiUrl}/${review.id}`, {
-                method: "PUT",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(review)
-            })
-            );
+            getToken().then((token) =>
+                fetch(`${apiUrl}/${review.id}`, {
+                    method: "PUT",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(review)  
+                }));
 
     const deleteReview = (id) =>
             getToken().then((token) =>
@@ -85,7 +94,7 @@ export function ReviewProvider(props) {
                 }));        
 
     return(
-        <ReviewContext.Provider value={{ reviews, review, getAllReviews, getReviewById, getReviewsByBookId, addReview, editReview, deleteReview }}>
+        <ReviewContext.Provider value={{ reviews, recBooks, getAllReviews, getReviewById, getReviewsByBookId, getRecBooks, addReview, editReview, deleteReview }}>
             {props.children}
         </ReviewContext.Provider>
     )            

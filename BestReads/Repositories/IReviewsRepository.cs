@@ -8,6 +8,7 @@ namespace BestReads.Repositories
         void Add(Reviews review);
         void Delete(int id);
         List<Reviews> GetAllReviews();
+        List<Reviews> GetRecommendedBooks(int numberOfPost, int block);
         Reviews GetReviewById(int id);
         List<Reviews> GetReviewsByBookId(int bookId);
         void Update(Reviews review);

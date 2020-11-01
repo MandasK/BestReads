@@ -14,6 +14,7 @@ export function UserProfileProvider(props) {
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const [aUser, setAUser] = useState({});
+    
     useEffect(() => {
       firebase.auth().onAuthStateChanged((u) => {
         setIsFirebaseReady(true);
@@ -98,9 +99,7 @@ export function UserProfileProvider(props) {
           headers: {
             Authorization: `Bearer ${token}`
           }
-        }).then((resp) => resp.json())
-        .then(setAUser)
-        )
+        }).then((resp) => resp.json()))
       };
       
 

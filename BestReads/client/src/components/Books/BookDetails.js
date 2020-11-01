@@ -6,29 +6,41 @@ import EditReadStateForm from './EditReadStateForm';
 import AddReviewForm from '../Reviews/AddReviewForm';
 import { Card, Modal, ModalHeader, ModalBody, CardBody, CardImg, Col, Row, Spinner, Button, Table } from 'reactstrap';
 import comingsoon from '../../Images/comingsoon.png'
+import DeleteReviewForm from '../Reviews/DeleteReviewForm';
+import EditReviewForm from '../Reviews/EditReviewForm';
 
 
 const BookDetails = () => {
     const { getReadStateById } = useContext(ReadStateContext);
-    const { getReviewsByBookId, reviews } = useContext(ReviewContext);
-    const [isLoading, setIsLoading] = useState(false);
+    const { getReviewsByBookId } = useContext(ReviewContext);
     const [readState, setReadState] = useState({});
+    const[areviews, setAReviews] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [editModal, showEdit] = useState(false);
     const [reviewEditModal, showReviewEdit] = useState(false);
     const [addModal, showAdd] = useState(false);
     const [deleteModal, showDelete] = useState(false);
     const { readStateId } = useParams();
-    const id= readStateId;
-    const history = useParams();
+    const id = readStateId;
+    const history = useHistory();
     const clientUser = JSON.parse(sessionStorage.getItem('userProfile'));
 
-    const editModalToggle = () => showEdit(!editModal)
-    const addModalToggle = () => showAdd(!addModal)
-    const editReviewToggle = () => showReviewEdit(!reviewEditModal)
-    const deleteToggle = () => showDelete(!deleteModal)
-
+    const editModalToggle = () => showEdit(!editModal);
+    const addModalToggle = () => showAdd(!addModal);
+    const editReviewToggle = () => showReviewEdit(!reviewEditModal);
+    const deleteToggle = () => showDelete(!deleteModal);
     
-    
+    useEffect(() => {
+        getReadStateById(readStateId)
+            .then((readState) => {
+                setReadState(readState)
+                getReviewsByBookId(readState.book.id)
+                    .then((areviews) => {
+                        setAReviews(areviews)
+                    })
+            })
+            .then(() => setIsLoading(true))
+    }, []);
 
     const renderModal = (readState) => {
         return (
@@ -47,7 +59,10 @@ const BookDetails = () => {
             </Modal>
             </>
         )
-    }
+    };
+
+    //const deleteToggle = () => showDelete(!deleteModal);
+    //const editReviewToggle = () => showReviewEdit(!reviewEditModal);
 
     const renderReviewModal = (areview) => {
         return (
@@ -55,21 +70,28 @@ const BookDetails = () => {
                 <Modal isOpen={deleteModal} toggle={deleteToggle}>
                     <ModalHeader>Delete Review</ModalHeader>
                     <ModalBody className="lead">
-                        
+                        <DeleteReviewForm areviewId={areview.id} showDelete={showDelete} />
+                    </ModalBody>
+                </Modal>
+                <Modal isOpen={reviewEditModal} toggle={editReviewToggle}>
+                    <ModalHeader>Edit Review</ModalHeader>
+                    <ModalBody className="lead">
+                        <EditReviewForm  areviewId={areview.id} showReviewEdit={showReviewEdit} />
                     </ModalBody>
                 </Modal>
             </>
         )
+
+    };
+
+    if(!readState) {
+        return null;
     }
-    useEffect(() => {
-        getReadStateById(readStateId)
-            .then(() => setIsLoading(true))
-    }, [])
+
 
     if(isLoading)
     {
-       return(
-           <>
+       return(   
            <div>
             <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}}>
                 <Row>
@@ -84,7 +106,7 @@ const BookDetails = () => {
                         
                             <h3><strong>Title:</strong> {readState.book.title}</h3>
                             <div><strong>Pages:</strong> {readState.book.pageCount}</div>
-                            <div><strong>Pages:</strong> {readState.book.id}</div>
+                            <div><strong>Id:</strong> {readState.book.id}</div>
                             <div><strong>Publish Date:</strong> {readState.book.publishDate}</div>
                             <div><strong>Author(s):</strong> {readState.book.authors}</div>
                             <br></br>
@@ -108,27 +130,25 @@ const BookDetails = () => {
                         <th></th>
                     </tr>
                 </thead>
-                {reviews.map((areview) => (
+                {areviews.map((areview) => (
                     <tbody key={areview.id} style={{background: "#FFFFF6"}}>
                         <tr>
                             <td>{areview.rating}</td>
                             <td>{areview.content}</td>
-                            <td>{areview.state.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showReviewEdit(true)}>Edit</Button> : ""}</td>
-                            <td>{areview.state.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showDelete(true)}>Delete</Button> : ""}</td>
+                            <td>{areview.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showReviewEdit(true)}>Edit</Button> : ""}</td>
+                            <td>{areview.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showDelete(true)}>Delete</Button> : ""}</td>
                             {renderReviewModal(areview)}
                         </tr>
                     </tbody>
                 ))}
             </Table>
-            </div>
             {renderModal(readState)}
-            
-            </>
+            </div>
        )
     }
-else {
+    else {
     return <Spinner className="app-spinner dark"/>
-     }
+     };
 }
 
 export default BookDetails;

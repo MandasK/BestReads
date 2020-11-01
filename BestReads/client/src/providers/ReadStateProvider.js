@@ -4,9 +4,8 @@ import { UserProfileContext } from './UserProfileProvider';
 export const ReadStateContext = createContext();
 
 export function ReadStateProvider(props) {
-    const { getToken } = useContext(UserProfileContext);
+    const { getToken }= useContext(UserProfileContext);
     const [readStates, setReadStates] = useState([]);
-    const [readState, setReadState] = useState({});
     const apiUrl = "/api/readState"
 
     const getAllReadStates = () => {
@@ -31,15 +30,16 @@ export function ReadStateProvider(props) {
                 .then(setReadStates));
     };
 
-    const getReadStateById = (id) => 
-        getToken().then((token) => fetch(`${apiUrl}/${id}/details`, {
+    const getReadStateById = (id) => {
+      return getToken().then((token) =>
+       fetch(`${apiUrl}/${id}/details`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((res) => res.json())
-            .then(setReadState));
-    
+      )
+    }
 
     const addReadState = (rState) =>
         getToken().then((token) =>
@@ -70,7 +70,7 @@ export function ReadStateProvider(props) {
         
     
     return(
-        <ReadStateContext.Provider value={{ getAllReadStateForUser, getAllReadStates, getReadStateById, addReadState, editReadState, readStates, readState }}>
+        <ReadStateContext.Provider value={{ getAllReadStateForUser, getAllReadStates, getReadStateById, addReadState, editReadState, readStates }} >
             {props.children}
         </ReadStateContext.Provider>
     )    

@@ -19,7 +19,7 @@ const UserList = (props) => {
     return (
         <div className="justify-content-center">
             <Table style={{width: "50%", margin: "5em auto"}}>
-                <thead>
+                <thead style={{background: "#FFFFF6"}}>
                     <tr>
                     <th style={{background: "#FFFFF6"}}>Profile Picture</th>
                     <th style={{background: "#FFFFF6"}}>Username</th>

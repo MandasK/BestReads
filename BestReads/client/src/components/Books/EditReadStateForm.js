@@ -5,7 +5,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 const EditReadStateForm = ({showEdit, readStateId}) => {
     const [isLoading, setIsLoading] = useState(false);
-    const { editReadState, getReadStateById, readState } = useContext(ReadStateContext);
+    const { editReadState, getReadStateById } = useContext(ReadStateContext);
+    const [readState, setReadState] = useState({});
     const [newStateId, setNewStateId] = useState();
     const id = readStateId;
     let location = useLocation();
@@ -13,6 +14,9 @@ const EditReadStateForm = ({showEdit, readStateId}) => {
 
     useEffect(() => {
         getReadStateById(id)
+        .then((readState) => {
+            setReadState(readState)
+        })
         .then(() => setIsLoading(true))
     }, [])
 

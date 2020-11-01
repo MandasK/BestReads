@@ -62,7 +62,7 @@ namespace BestReads.Controllers
             var currentUserProfile = GetCurrentUserProfile();
             subscription.SubscriberUserProfileId = currentUserProfile.Id;
             _subscriptionRepository.Add(subscription);
-            return CreatedAtAction("Get", new { id = subscription.Id }, subscription);
+            return Ok(subscription);
         }
 
         [HttpPut("{id}")]
