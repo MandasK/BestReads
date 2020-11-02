@@ -194,7 +194,7 @@ namespace BestReads.Repositories
                             },
                             User = new Users()
                             {
-                                Id = DbUtils.GetInt(reader, "StateId"),
+                                Id = DbUtils.GetInt(reader, "UserId"),
                                 Name = DbUtils.GetString(reader, "Name"),
                                 DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                 Bio = DbUtils.GetString(reader, "Bio"),

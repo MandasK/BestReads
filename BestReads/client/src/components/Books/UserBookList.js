@@ -28,7 +28,7 @@ const UserBookList = () => {
                         <tr>
                             <td><Link to={`/books/${readState.id}/details`}>{readState.state.title}</Link></td>
                             <td>{readState.book.title}</td>
-                            <td>{readState.authors}</td>
+                            <td>{readState.book.authors}</td>
                         </tr>
                    </tbody>
                 ))}   
