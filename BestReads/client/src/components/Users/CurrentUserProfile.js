@@ -22,6 +22,8 @@ const CurrentUserProfile = () => {
         getAllReadStateForUser(clientuser.id)
     }, []);
 
+    console.log(readStates)
+
     if(!currentUser) {
         return null;
     }
@@ -59,7 +61,7 @@ const CurrentUserProfile = () => {
                    <tr>
                        <td><Link to={`/books/${readState.id}/details`}>{readState.state.title}</Link></td>
                        <td>{readState.book.title}</td>
-                       <td>{readState.authors}</td>
+                       <td>{readState.book.authors}</td>
                    </tr>
                </tbody>
                 ))}

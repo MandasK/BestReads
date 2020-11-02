@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import {useParams, useHistory } from 'react-router-dom';
 import { UserProfileContext} from '../../providers/UserProfileProvider';
 import {SubscriptionContext} from '../../providers/SubscriptionProvider';
-import { CardImg, Spinner, Card, CardBody, Row, Col, Button } from 'reactstrap';
+import { CardImg, Card, CardBody, Row, Col, Button } from 'reactstrap';
 
 const UserDetails = (props) => {
     const { getUserById, getCurrentUser } = useContext(UserProfileContext);
@@ -20,7 +20,6 @@ const UserDetails = (props) => {
     
 
     const refresh = ()=>{
-        // it re-renders the page
        window.location.reload();
     }
     useEffect(() => {
@@ -72,8 +71,7 @@ const UserDetails = (props) => {
         })
         
     }
-        // if(isLoading)
-        // {
+    
         return (
             <div>
               <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
@@ -111,10 +109,7 @@ const UserDetails = (props) => {
               </Card>  
             </div>
         )
-        // }
-        // else {
-        //     return <Spinner className="app-spinner dark"/>
-        // }   
+         
 
 }
 

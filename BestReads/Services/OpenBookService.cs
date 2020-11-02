@@ -77,7 +77,7 @@ namespace BestReads.Services
                 {
                     Title = openBookResponse.volumeInfo?.title,
                     GoogleId = openBookResponse.id,
-                    ImageLocation = openBookResponse.volumeInfo.imageLinks?.large,
+                    ImageLocation = openBookResponse.volumeInfo.imageLinks?.thumbnail,
                     About = openBookResponse.volumeInfo?.description,
                     PageCount = openBookResponse.volumeInfo.pageCount,
                     PublishDate = openBookResponse.volumeInfo?.publishedDate,

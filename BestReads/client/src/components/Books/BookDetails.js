@@ -24,7 +24,6 @@ const BookDetails = () => {
     const id = readStateId;
     const history = useHistory();
     const clientUser = JSON.parse(sessionStorage.getItem('userProfile'));
-
     const editModalToggle = () => showEdit(!editModal);
     const addModalToggle = () => showAdd(!addModal);
     const editReviewToggle = () => showReviewEdit(!reviewEditModal);
@@ -41,6 +40,8 @@ const BookDetails = () => {
             })
             .then(() => setIsLoading(true))
     }, []);
+
+    const regex = /<[^>]*>/gi;
 
     const renderModal = (readState) => {
         return (
@@ -106,11 +107,10 @@ const BookDetails = () => {
                         
                             <h3><strong>Title:</strong> {readState.book.title}</h3>
                             <div><strong>Pages:</strong> {readState.book.pageCount}</div>
-                            <div><strong>Id:</strong> {readState.book.id}</div>
                             <div><strong>Publish Date:</strong> {readState.book.publishDate}</div>
                             <div><strong>Author(s):</strong> {readState.book.authors}</div>
                             <br></br>
-                            <div><strong>Description:</strong> {readState.book.about}</div>
+                            <div><strong>Description:</strong> {readState.book.about.replaceAll(regex, " ")}</div>
                             <br></br>
                             <div><strong>Current Book List:</strong> {readState.state.title}</div>
                             <br></br>

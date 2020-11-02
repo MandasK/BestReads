@@ -28,8 +28,6 @@ const AddBook = () => {
            about: book.about,
            pageCount: book.pageCount,
            publishDate: book.publishDate,
-           averageRating: book.averageRating,
-           ratingCount: book.ratingCount,
            authors: bookauthor
         };
 
