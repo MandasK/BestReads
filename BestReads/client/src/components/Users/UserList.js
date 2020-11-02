@@ -28,11 +28,12 @@ const UserList = (props) => {
                 </thead>
                 {users.map((user) => (
                     <tbody key={user.id} style={{background: "#FFFFF6"}}>
+                        {user.id !== clientUser.id ?
                         <tr>
-                            <td><Link to={`/users/${user.id}/details`}><img style={{height: "50px", width:"auto"}} src={user.imageLocation} alt={user.name} /></Link></td>
+                            <td><Link to={`/users/${user.id}/details`}><img style={{height: "50px", width:"auto"}} src={user.imageLocation} alt={user.name}/></Link></td>
                             <td>{user.displayName}</td>
                             <td>{user.name}</td>
-                        </tr>
+                        </tr> : ""}
                     </tbody>
                 ))}
             </Table>

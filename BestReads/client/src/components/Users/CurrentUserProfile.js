@@ -22,7 +22,6 @@ const CurrentUserProfile = () => {
         getAllReadStateForUser(clientuser.id)
     }, []);
 
-    console.log(readStates)
 
     if(!currentUser) {
         return null;

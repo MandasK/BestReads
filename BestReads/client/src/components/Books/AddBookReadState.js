@@ -71,7 +71,7 @@ const AddReadBookState = () => {
                                     id="stateId"
                                     className="form-control"
                                     onChange={(e) => setStateid(e.target.value)}>
-                                <option value="1">Plan to Read</option>
+                                <option value="1">Want to Read</option>
                                 <option value="2">Currently Reading</option>
                                 <option value="3">Already Read</option>
                             </select>
