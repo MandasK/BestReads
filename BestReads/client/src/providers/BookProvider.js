@@ -5,7 +5,7 @@ export const BookContext = React.createContext();
 
 export function BookProvider(props) {
     const [abooks, setABooks] = useState([]);
-    const [abook, setABook] = useState([]);
+    const [abook, setABook] = useState({});
     const { getToken } = useContext(UserProfileContext);
 
     const getAllBooks = () => {

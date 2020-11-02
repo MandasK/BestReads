@@ -19,7 +19,7 @@ const UserList = (props) => {
     return (
         <div className="justify-content-center">
             <Table style={{width: "50%", margin: "5em auto"}}>
-                <thead>
+                <thead style={{background: "#FFFFF6"}}>
                     <tr>
                     <th style={{background: "#FFFFF6"}}>Profile Picture</th>
                     <th style={{background: "#FFFFF6"}}>Username</th>
@@ -27,12 +27,13 @@ const UserList = (props) => {
                     </tr>
                 </thead>
                 {users.map((user) => (
-                    <tbody style={{background: "#FFFFF6"}}>
+                    <tbody key={user.id} style={{background: "#FFFFF6"}}>
+                        {user.id !== clientUser.id ?
                         <tr>
-                            <td><Link to={`/users/${user.id}/details`}><img style={{height: "50px", width:"auto"}} src={user.imageLocation} alt={user.name} /></Link></td>
+                            <td><Link to={`/users/${user.id}/details`}><img style={{height: "50px", width:"auto"}} src={user.imageLocation} alt={user.name}/></Link></td>
                             <td>{user.displayName}</td>
                             <td>{user.name}</td>
-                        </tr>
+                        </tr> : ""}
                     </tbody>
                 ))}
             </Table>

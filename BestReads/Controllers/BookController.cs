@@ -8,28 +8,24 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BestReads.Services;
 using BestReads.Infrastructure;
-using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BestReads.Controllers
 {
-   
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly ILogger<BooksController> _logger;
-        private readonly IOpenBookService _bookService;
+
         private readonly IBookRepository _bookRepo;
         private readonly IUserRepository _userRepository;
 
-        public BookController(IBookRepository bookRepository, IUserRepository userRepository, ILogger<BooksController> logger, IOpenBookService bookService)
+        public BookController(IBookRepository bookRepository, IUserRepository userRepository)
         {
             _bookRepo = bookRepository;
             _userRepository = userRepository;
-            _logger = logger;
-            _bookService = bookService;
         }
 
         [HttpGet]

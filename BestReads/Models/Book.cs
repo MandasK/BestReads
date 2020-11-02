@@ -15,8 +15,6 @@ namespace BestReads.Models
         public string About { get; set; }
         public int? PageCount { get; set; }
         public string PublishDate { get; set;}
-        public double? AverageRating { get; set; }
-        public int? RatingCount { get; set; }
         public List<string> Authors { get; set; }
     }
 }

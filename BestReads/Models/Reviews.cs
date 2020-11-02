@@ -10,12 +10,11 @@ namespace BestReads.Models
     public class Reviews
     {
         public int Id { get; set; }
-        [Required]
         public string Content { get; set; }
         [Required]
         public int Rating { get; set; }
         [Required]
-        public int StateId { get; set; }
-        public State State { get; set; }
+        public int ReadStateId { get; set; }
+        public ReadState ReadState { get; set; }
     }
 }

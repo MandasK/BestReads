@@ -22,8 +22,6 @@ namespace BestReads.Models
         public string description { get; set; }
         public int pageCount { get; set; }
         public List<string> categories { get; set; }
-        public int averageRating { get; set; }
-        public int ratingsCount { get; set; }
         public Imagelink imageLinks { get; set; }
         
     }

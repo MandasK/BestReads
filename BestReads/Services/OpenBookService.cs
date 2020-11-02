@@ -47,8 +47,6 @@ namespace BestReads.Services
                     About = book.volumeInfo?.description,
                     PageCount = book.volumeInfo.pageCount,
                     PublishDate = book.volumeInfo?.publishedDate,
-                    AverageRating = book.volumeInfo.averageRating,
-                    RatingCount = book.volumeInfo.ratingsCount,
                     Authors = book.volumeInfo?.authors
 
                 }).ToList();
@@ -79,12 +77,10 @@ namespace BestReads.Services
                 {
                     Title = openBookResponse.volumeInfo?.title,
                     GoogleId = openBookResponse.id,
-                    ImageLocation = openBookResponse.volumeInfo.imageLinks?.large,
+                    ImageLocation = openBookResponse.volumeInfo.imageLinks?.thumbnail,
                     About = openBookResponse.volumeInfo?.description,
                     PageCount = openBookResponse.volumeInfo.pageCount,
                     PublishDate = openBookResponse.volumeInfo?.publishedDate,
-                    AverageRating = openBookResponse.volumeInfo.averageRating,
-                    RatingCount = openBookResponse.volumeInfo.ratingsCount,
                     Authors = openBookResponse.volumeInfo?.authors
                 };
 

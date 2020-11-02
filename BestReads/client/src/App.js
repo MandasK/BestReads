@@ -7,23 +7,29 @@ import './App.css';
 import { BookSearchProvider } from './providers/BookSearchProvider';
 import { BookProvider } from './providers/BookProvider';
 import { SubscriptionProvider } from './providers/SubscriptionProvider';
+import { ReadStateProvider } from './providers/ReadStateProvider';
+import { ReviewProvider } from './providers/ReviewProvider';
 
 function App() {
-  return (
-    <div className="App">
+  return (  
    <Router>
      <UserProfileProvider>
-     <SubscriptionProvider>
-       <BookSearchProvider>
-       <BookProvider>
-       <Header />
-       <ApplicationViews />
-       </BookProvider>  
-       </BookSearchProvider>
-       </SubscriptionProvider>
-     </UserProfileProvider>
-   </Router>
-   </div>
+        <SubscriptionProvider>
+        <ReadStateProvider>
+          <ReviewProvider>
+          <BookSearchProvider>
+            <BookProvider>
+              
+                  <Header />
+                  <ApplicationViews />
+                     
+            </BookProvider>  
+          </BookSearchProvider>
+          </ReviewProvider> 
+          </ReadStateProvider>
+              </SubscriptionProvider>
+      </UserProfileProvider>
+    </Router>
   );
 }
 

@@ -10,6 +10,6 @@ namespace BestReads.Models
     {
         public int ID { get; set; }
         [Required]
-        public int Title { get; set; }
+        public string Title { get; set; }
     }
 }
