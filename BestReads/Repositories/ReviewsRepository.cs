@@ -203,14 +203,12 @@ namespace BestReads.Repositories
                     cmd.CommandText = @"
                         UPDATE Reviews
                         SET Content = @Content,
-                            Rating = @Rating,
-                            ReadStateId = @ReadStateId
+                            Rating = @Rating
                         WHERE Id = @id
                                        ";
                     DbUtils.AddParameter(cmd, "@id", review.Id);
                     DbUtils.AddParameter(cmd, "@Content", review.Content);
                     DbUtils.AddParameter(cmd, "@Rating", review.Rating);
-                    DbUtils.AddParameter(cmd, "@ReadStateid", review.ReadStateId);
 
                     cmd.ExecuteNonQuery();
                 }

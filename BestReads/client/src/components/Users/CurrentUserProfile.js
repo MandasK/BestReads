@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
+import { SubscriptionContext } from '../../providers/SubscriptionProvider';
 import { useHistory, Link } from 'react-router-dom';
 import { Card, CardImg, CardBody, Button, Row, Col, Table, Spinner } from 'reactstrap';
 import "./UserProfile.css"
@@ -8,7 +9,9 @@ import "./UserProfile.css"
 const CurrentUserProfile = () => {
     const { currentUser, getCurrentUser } = useContext(UserProfileContext);
     const { getAllReadStateForUser, readStates } =useContext(ReadStateContext);
+    const { getUserSubscriptions } = useContext(SubscriptionContext);
     const [isloading, setIsLoading] = useState(false);
+    const [subs, setSubscriptions] = useState([]);
     const history = useHistory();
     const clientuser = JSON.parse(sessionStorage.getItem('userProfile'))
     const newCurrentUser = parseInt(clientuser.id)
@@ -22,7 +25,13 @@ const CurrentUserProfile = () => {
         getAllReadStateForUser(clientuser.id)
     }, []);
 
-    console.log(readStates)
+    useEffect(() => {
+        getUserSubscriptions(clientuser.id)
+            .then((subs) => {
+                setSubscriptions(subs)
+            })
+    }, []);
+    console.log(subs)
 
     if(!currentUser) {
         return null;
@@ -66,6 +75,20 @@ const CurrentUserProfile = () => {
                </tbody>
                 ))}
                 
+            </Table>
+            <Table>
+                <thead style={{background: "#FFFFF6"}}>
+                    <tr>
+                        <th>Friends</th>
+                    </tr>
+                </thead>
+                {subs.map((sub) => (
+                    <tbody key={sub.id} style={{background: "#FFFFF6"}}>
+                        <tr>
+                        <td><Link to={`/users/${sub.providerUserProfileId}/details`}>{sub.subscribeeUser.displayName}</Link></td> 
+                        </tr>
+                    </tbody>
+                ))}
             </Table>
         </div>
     )

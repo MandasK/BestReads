@@ -50,7 +50,7 @@ const EditReadStateForm = ({showEdit, readStateId}) => {
                                  className="form-control"
                                 onChange={(e) => setNewStateId(e.target.value)}>
                                     <option defaultValue={readState.state.id} hidden>{readState.state.title}</option>
-                                    <option value="1">Plan to Read</option>
+                                    <option value="1">Want to Read</option>
                                     <option value="2">Currently Reading</option>
                                     <option value="3">Already Read</option>
                         </select>

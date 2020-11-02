@@ -8,6 +8,7 @@ import { Card, Modal, ModalHeader, ModalBody, CardBody, CardImg, Col, Row, Spinn
 import comingsoon from '../../Images/comingsoon.png'
 import DeleteReviewForm from '../Reviews/DeleteReviewForm';
 import EditReviewForm from '../Reviews/EditReviewForm';
+import Review from '../Reviews/Review';
 
 
 const BookDetails = () => {
@@ -65,25 +66,25 @@ const BookDetails = () => {
     //const deleteToggle = () => showDelete(!deleteModal);
     //const editReviewToggle = () => showReviewEdit(!reviewEditModal);
 
-    const renderReviewModal = (areview) => {
-        return (
-            <>
-                <Modal isOpen={deleteModal} toggle={deleteToggle}>
-                    <ModalHeader>Delete Review</ModalHeader>
-                    <ModalBody className="lead">
-                        <DeleteReviewForm areviewId={areview.id} showDelete={showDelete} />
-                    </ModalBody>
-                </Modal>
-                <Modal isOpen={reviewEditModal} toggle={editReviewToggle}>
-                    <ModalHeader>Edit Review</ModalHeader>
-                    <ModalBody className="lead">
-                        <EditReviewForm  areviewId={areview.id} showReviewEdit={showReviewEdit} />
-                    </ModalBody>
-                </Modal>
-            </>
-        )
+    // const renderReviewModal = (areview) => {
+    //     return (
+    //         <>
+    //             <Modal isOpen={deleteModal} toggle={deleteToggle}>
+    //                 <ModalHeader>Delete Review</ModalHeader>
+    //                 <ModalBody className="lead">
+    //                     <DeleteReviewForm areviewId={areview.id} showDelete={showDelete} />
+    //                 </ModalBody>
+    //             </Modal>
+    //             <Modal isOpen={reviewEditModal} toggle={editReviewToggle}>
+    //                 <ModalHeader>Edit Review</ModalHeader>
+    //                 <ModalBody className="lead">
+    //                     <EditReviewForm  areviewId={areview.id} showReviewEdit={showReviewEdit} />
+    //                 </ModalBody>
+    //             </Modal>
+    //         </>
+    //     )
 
-    };
+    // };
 
     if(!readState) {
         return null;
@@ -95,7 +96,7 @@ const BookDetails = () => {
        return(   
            <div>
             <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}}>
-                <Row>
+            <Row>
                     <Col>
                     {
                         readState.book.imageLocation != null ? <CardImg src={readState.book.imageLocation} alt={readState.book.title} /> 
@@ -104,7 +105,6 @@ const BookDetails = () => {
                     </Col>
                     <Col>
                     <CardBody>
-                        
                             <h3><strong>Title:</strong> {readState.book.title}</h3>
                             <div><strong>Pages:</strong> {readState.book.pageCount}</div>
                             <div><strong>Publish Date:</strong> {readState.book.publishDate}</div>
@@ -118,13 +118,14 @@ const BookDetails = () => {
                             {readState.state.id === 3 ? <Button className="LoginButton" onClick={() => showAdd(true)}>Add Review</Button> : ""}
                     </CardBody>
                     </Col>
-                </Row>
+            </Row>
             </Card>
-            <h3 style={{background: "#FFFFF6", width: "75%", margin: "0 auto"}}>Reviews</h3>
+            <h3 style={{background: "#FFFFF6", width: "75%", textAlign: "center", margin: "0 auto"}}>Reviews</h3>
             <Table style={{width: "75%", margin: "1em auto"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
                         <th>Rating</th>
+                        <th>User</th>
                         <th>Written Review</th>
                         <th></th>
                         <th></th>
@@ -133,15 +134,17 @@ const BookDetails = () => {
                 {areviews.map((areview) => (
                     <tbody key={areview.id} style={{background: "#FFFFF6"}}>
                         <tr>
-                            <td>{areview.rating}</td>
+                            {/* <td>{areview.rating}</td>
                             <td>{areview.content}</td>
                             <td>{areview.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showReviewEdit(true)}>Edit</Button> : ""}</td>
                             <td>{areview.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showDelete(true)}>Delete</Button> : ""}</td>
-                            {renderReviewModal(areview)}
+                            {renderReviewModal(areview)} */}
+                            <Review review={areview} />
                         </tr>
                     </tbody>
                 ))}
             </Table>
+            
             {renderModal(readState)}
             </div>
        )
