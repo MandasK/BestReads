@@ -17,5 +17,7 @@ namespace BestReads.Models
         public int ProviderUserProfileId { get; set; }
         public DateTime BeginDateTime { get; set; }
         public DateTime? EndDateTime { get; set; }
+
+        public Users SubscribeeUser { get; set; }
     }
 }

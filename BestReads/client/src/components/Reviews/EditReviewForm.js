@@ -3,9 +3,9 @@ import{ Alert, Form, FormGroup, Input, Label, Spinner, Button } from 'reactstrap
 import { ReviewContext } from '../../providers/ReviewProvider';
 import { useHistory, useLocation } from 'react-router-dom';
 
-const EditReviewForm = ({areviewId, showReviewEdit}) => {
+const EditReviewForm = ({areviewId, toggle}) => {
     const { editReview, getReviewById } = useContext(ReviewContext);
-    const [isLoading, setIsLoading] = useState(false);
+    const [ready, setIsLoading] = useState(false);
     const [review, setReview] = useState({});
     const newRating= useRef();
     const newContent = useRef();
@@ -21,28 +21,24 @@ const EditReviewForm = ({areviewId, showReviewEdit}) => {
             .then(() => setIsLoading(true))
     }, []);
 
-    console.log(review)
     const submit = e => {
         e.preventDefault();
         const newReview = {
             Id: areviewId,
             Rating: parseInt(newRating.current.value),
             Content: newContent.current.value,
-            ReadStateId: review.readState.id
         }
 
         editReview(newReview)
+        .then(getReviewById(id))
+        .then(toggle)
         .then(() => {
             history.push({ pathname: "/empty" });
             history.replace({ pathname: location.pathname })
         })
-
-        if(showReviewEdit) {
-            showReviewEdit(false)
-        }
     }
 
-    if(isLoading) {
+    if(ready) {
         return (
             <div className="justify-content-center">
                 <Form>

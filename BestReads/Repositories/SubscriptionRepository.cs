@@ -45,7 +45,7 @@ namespace BestReads.Repositories
                                SubscriberUserProfileId, 
                                ProviderUserProfileId, 
                                BeginDateTime, 
-                               EndDateTime 
+                               EndDateTime
                         FROM Subscription
                         WHERE SubscriberUserProfileId = @subscriber AND ProviderUserProfileId = @provider
                         ORDER BY BeginDateTime
@@ -82,12 +82,14 @@ namespace BestReads.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, 
+                        SELECT s.Id, 
                                SubscriberUserProfileId, 
                                ProviderUserProfileId, 
                                BeginDateTime, 
-                               EndDateTime 
-                        FROM Subscription
+                               EndDateTime,
+                               u.DisplayName
+                        FROM Subscription s
+                        Left JOIN Users u ON ProviderUserProfileId = u.Id
                         WHERE SubscriberUserProfileId = @subscriber AND EndDateTime is Null
                         ORDER BY BeginDateTime
                                        ";
@@ -103,6 +105,11 @@ namespace BestReads.Repositories
                             Id = DbUtils.GetInt(reader, "Id"),
                             SubscriberUserProfileId = DbUtils.GetInt(reader, "SubscriberUserProfileId"),
                             ProviderUserProfileId = DbUtils.GetInt(reader, "ProviderUserProfileId"),
+                            SubscribeeUser = new Users()
+                            {
+                                Id = DbUtils.GetInt(reader, "ProviderUserProfileId"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            },
                             BeginDateTime = DbUtils.GetDateTime(reader, "BeginDateTime"),
                             EndDateTime = DbUtils.GetNullableDateTime(reader, "EndDateTime")
                         });

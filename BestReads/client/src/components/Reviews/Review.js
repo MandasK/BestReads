@@ -20,15 +20,15 @@ const Review = ({ review }) => {
         <td>{review.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showDelete(true)}>Delete</Button> : ""}</td>
 
         <Modal isOpen={deleteModal} toggle={deleteToggle}>
-                    <ModalHeader>Delete Review</ModalHeader>
+                    <ModalHeader toggle={deleteToggle}>Delete Review</ModalHeader>
                     <ModalBody className="lead">
-                        <DeleteReviewForm areviewId={review.id} showDelete={showDelete} />
+                        <DeleteReviewForm areviewId={review.id} toggle={deleteToggle} />
                     </ModalBody>
                 </Modal>
                 <Modal isOpen={reviewEditModal} toggle={editReviewToggle}>
-                    <ModalHeader>Edit Review</ModalHeader>
+                    <ModalHeader toggle={editReviewToggle}>Edit Review</ModalHeader>
                     <ModalBody className="lead">
-                        <EditReviewForm  areviewId={review.id} showReviewEdit={showReviewEdit} />
+                        <EditReviewForm  areviewId={review.id} toggle={editReviewToggle} />
                     </ModalBody>
                 </Modal>
         </>

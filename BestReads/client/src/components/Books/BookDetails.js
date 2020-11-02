@@ -120,7 +120,7 @@ const BookDetails = () => {
                     </Col>
             </Row>
             </Card>
-            <h3 style={{background: "#FFFFF6", width: "75%", margin: "0 auto"}}>Reviews</h3>
+            <h3 style={{background: "#FFFFF6", width: "75%", textAlign: "center", margin: "0 auto"}}>Reviews</h3>
             <Table style={{width: "75%", margin: "1em auto"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
