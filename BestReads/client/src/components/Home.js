@@ -6,8 +6,9 @@ import RecBookList from './Reviews/RecBooksList';
 export default function Home() {
     return (
         <div>
-            <UserBookList />
+            
             <RecBookList />
+            <UserBookList />
         </div>
     );
 }

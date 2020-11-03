@@ -14,8 +14,8 @@ function App() {
   return (  
    <Router>
      <UserProfileProvider>
+     <ReadStateProvider>
         <SubscriptionProvider>
-        <ReadStateProvider>
           <ReviewProvider>
           <BookSearchProvider>
             <BookProvider>
@@ -26,8 +26,8 @@ function App() {
             </BookProvider>  
           </BookSearchProvider>
           </ReviewProvider> 
-          </ReadStateProvider>
               </SubscriptionProvider>
+      </ReadStateProvider>
       </UserProfileProvider>
     </Router>
   );
