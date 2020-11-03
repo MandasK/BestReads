@@ -25,13 +25,14 @@ const CurrentUserProfile = () => {
         getAllReadStateForUser(clientuser.id)
     }, []);
 
+    console.log(readStates)
+
     useEffect(() => {
         getUserSubscriptions(clientuser.id)
             .then((subs) => {
                 setSubscriptions(subs)
             })
     }, []);
-    console.log(subs)
 
     if(!currentUser) {
         return null;
@@ -40,46 +41,29 @@ const CurrentUserProfile = () => {
     if(isloading)
     {
     return (
-        <div>
-            <Card style={{ border: "none", width: "30%", height:"50%"}} className="smallUserDetailContainer">
-                <Row>
-                    <Col>
+        <div className="justify-content-center">
+            <Row>
+            <Card style={{ border: "none", width: "40%", margin: "1em auto"}} className="smallUserDetailContainer">
+            <Row>
+                <Col>
                 {
                     currentUser.imageLocation != null ? <CardImg src={currentUser.imageLocation} alt={currentUser.name} /> : <i className="fa-user-circle fa-7x" />
                 }
                 </Col>
-                <CardBody className="smallUserDetailBodyContainer">
                 <Col>
+                <CardBody>
                     <h3>{currentUser.displayName}</h3>
                     <div>{currentUser.bio}</div>
-                    <Button className="smallUserDetailContainerButton" onClick={() => {history.push('/myProfile/edit')}}>Edit Profile</Button>
-                </Col>
+                    <Button className="smallUserDetailContainerButton" style={{margin: "1em auto"}} onClick={() => {history.push('/myProfile/edit')}}>Edit Profile</Button>
                 </CardBody>
-                </Row>
+                </Col>
+            </Row>    
             </Card>
-            <Table>
+            <Col>
+            <Table style={{width: "20%", margin: "1em auto"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
-                       <th>Book List</th>
-                       <th>Book</th> 
-                       <th>Author</th>
-                    </tr>
-                </thead>
-                {readStates.map((readState) => (
-                   <tbody key={readState.id} style={{background: "#FFFFF6"}}>
-                   <tr>
-                       <td><Link to={`/books/${readState.id}/details`}>{readState.state.title}</Link></td>
-                       <td>{readState.book.title}</td>
-                       <td>{readState.book.authors}</td>
-                   </tr>
-               </tbody>
-                ))}
-                
-            </Table>
-            <Table>
-                <thead style={{background: "#FFFFF6"}}>
-                    <tr>
-                        <th>Friends</th>
+                        <th> Your Friends</th>
                     </tr>
                 </thead>
                 {subs.map((sub) => (
@@ -89,6 +73,27 @@ const CurrentUserProfile = () => {
                         </tr>
                     </tbody>
                 ))}
+            </Table>
+            </Col>
+            </Row>
+            <Table style={{width: "66%", margin: "1em auto"}}>
+                <thead style={{background: "#FFFFF6"}}>
+                    <tr>
+                       <th>Book List</th>
+                       <th>Book</th> 
+                       <th>Author</th>
+                    </tr>
+                </thead>
+                {readStates.map((readState) => (
+                   <tbody key={readState.id} style={{background: "#FFFFF6"}}> 
+                   <tr>
+                       <td><Link to={`/books/${readState.id}/details`}><img style={{height: "50px", width:"auto"}} src={readState.book.imageLocation} alt={readState.book.title}/></Link></td>
+                       <td>{readState.book.title}</td>
+                       <td>{readState.book.authors}</td>
+                   </tr>
+               </tbody>
+                ))}
+                
             </Table>
         </div>
     )

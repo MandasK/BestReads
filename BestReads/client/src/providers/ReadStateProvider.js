@@ -30,7 +30,10 @@ export function ReadStateProvider(props) {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then((res) => res.json()))
+            }).then((res) => res.json())
+                .then((readStates) => {
+                    setReadStates(readStates)
+                }))
     };
 
     const getReadStateByState1 = (currentUserId) => {

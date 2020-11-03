@@ -14,8 +14,8 @@ const RecBookList = () => {
 
     return (
         <div className="justify-content-center">
-            <h3 style={{background: "#FFFFF6", width: "50%", margin: "2em auto"}}>Books We Recommend For You</h3>
-            <Table style={{width: "50%", margin: "3em auto"}}>
+            <h3 style={{background: "#FFFFF6", width: "50%", marginTop: "5em", marginLeft:"auto", marginRight:"auto"}}>Books We Recommend For You</h3>
+            <Table style={{width: "50%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
                         <th>Book Cover</th>
@@ -27,7 +27,7 @@ const RecBookList = () => {
                 {recBooks.map((rec) =>(
                     <tbody key={rec.id} style={{background: "#FFFFF6"}}>
                         <tr>
-                        <td><img style={{height: "50px", width:"auto"}} src={rec.readState.book.imageLocation} alt={rec.readState.book.title} /></td>
+                        <td><Link to={`/books/${rec.readState.book.id}/AddState`} ><img style={{height: "50px", width:"auto"}} src={rec.readState.book.imageLocation} alt={rec.readState.book.title} /></Link></td>
                         <td>{rec.rating}</td>
                         <td>{rec.readState.book.title}</td>
                         <td>{rec.readState.book.authors}</td>

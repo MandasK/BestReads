@@ -14,8 +14,6 @@ const UserBookList = () => {
             
     }, [])
 
-    console.log(toRead)
-
     //readList
     useEffect(() => {
         getReadStateByState2(clientuser.id)
@@ -30,21 +28,21 @@ const UserBookList = () => {
 
     return (
         <div className="justify-content-center">
-            <h3 style={{background: "#FFFFF6", width: "50%", margin: "2em auto"}}>Your Books</h3>
             <Row>
                 <Col>
-            <Table style={{width: "50%", margin: "3em auto"}}>
+                <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto"}}>Books you want to read...</h3>
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
             <thead style={{background: "#FFFFF6"}}>
                 <tr>
-                    <th>Book List</th>
-                    <th>Book</th> 
+                    <th>Book</th>
+                    <th>Title</th> 
                     <th>Author</th>
                 </tr>
             </thead>
                 {toRead.map((tr) => (
                    <tbody key={tr.id} style={{background: "#FFFFF6"}}>
                         <tr>
-                            <td><Link to={`/books/${tr.id}/details`}>{tr.state.title}</Link></td>
+                            <td><Link to={`/books/${tr.id}/details`}><img style={{height: "50px", width:"auto"}} src={tr.book.imageLocation} alt={tr.book.title}/></Link></td>
                             <td>{tr.book.title}</td>
                             <td>{tr.book.authors}</td>
                         </tr>
@@ -53,38 +51,41 @@ const UserBookList = () => {
             </Table>
             </Col>
             <Col>
-            <Table style={{width: "50%", margin: "3em auto"}}>
+            <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto"}}>Books you are reading...</h3>
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
             <thead style={{background: "#FFFFF6"}}>
                 <tr>
-                    <th>Book List</th>
-                    <th>Book</th> 
+                    <th>Book</th>
+                    <th>Title</th> 
                     <th>Author</th>
                 </tr>
             </thead>
                 {reading.map((rd) => (
                    <tbody key={rd.id} style={{background: "#FFFFF6"}}>
                         <tr>
-                            <td><Link to={`/books/${rd.id}/details`}>{rd.state.title}</Link></td>
+                            <td><Link to={`/books/${rd.id}/details`}><img style={{height: "50px", width:"auto"}} src={rd.book.imageLocation} alt={rd.book.title}/></Link></td>
                             <td>{rd.book.title}</td>
                             <td>{rd.book.authors}</td>
                         </tr>
                    </tbody>
                 ))}   
             </Table>
+            
             </Col>
             <Col>
-            <Table style={{width: "50%", margin: "3em auto"}}>
+            <h3 style={{background: "#FFFFF6", width: "90%", margin:"0 auto"}}>Books you've already read...</h3>
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
             <thead style={{background: "#FFFFF6"}}>
                 <tr>
-                    <th>Book List</th>
-                    <th>Book</th> 
+                    <th>Book</th>
+                    <th>Title</th> 
                     <th>Author</th>
                 </tr>
             </thead>
                 {read.map((r) => (
                    <tbody key={r.id} style={{background: "#FFFFF6"}}>
                         <tr>
-                            <td><Link to={`/books/${r.id}/details`}>{r.state.title}</Link></td>
+                            <td><Link to={`/books/${r.id}/details`}><img style={{height: "50px", width:"auto"}} src={r.book.imageLocation} alt={r.book.title}/></Link></td>
                             <td>{r.book.title}</td>
                             <td>{r.book.authors}</td>
                         </tr>

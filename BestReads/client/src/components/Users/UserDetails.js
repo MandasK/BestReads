@@ -74,7 +74,7 @@ const UserDetails = (props) => {
     
         return (
             <div>
-              <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
+              <Card style={{border:"none", width: "40%", margin:"5em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
                   <Row>
                       <Col>
                   { 
