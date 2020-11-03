@@ -95,7 +95,7 @@ const BookDetails = () => {
     {
        return(   
            <div>
-            <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}}>
+            <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
             <Row>
                     <Col>
                     {
@@ -115,13 +115,13 @@ const BookDetails = () => {
                             <div><strong>Current Book List:</strong> {readState.state.title}</div>
                             <br></br>
                             <Button className="LoginButton" onClick={() => showEdit(true)} >Change Book List</Button>
-                            {readState.state.id === 3 ? <Button className="LoginButton" onClick={() => showAdd(true)}>Add Review</Button> : ""}
+                            {readState.state.id === 3 ? <Button className="LoginButton" style={{marginLeft:"1em"}} onClick={() => showAdd(true)}>Add Review</Button> : ""}
                     </CardBody>
                     </Col>
             </Row>
             </Card>
-            <h3 style={{background: "#FFFFF6", width: "75%", textAlign: "center", margin: "0 auto"}}>Reviews</h3>
-            <Table style={{width: "75%", margin: "1em auto"}}>
+            <h3 style={{background: "#FFFFF6", width: "75%", textAlign: "center", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>Reviews</h3>
+            <Table style={{width: "75%", margin: "1em auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
                         <th>Rating</th>

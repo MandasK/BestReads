@@ -43,7 +43,7 @@ const CurrentUserProfile = () => {
     return (
         <div className="justify-content-center">
             <Row>
-            <Card style={{ border: "none", width: "40%", margin: "1em auto"}} className="smallUserDetailContainer">
+            <Card style={{ border: "none", width: "40%", marginTop:"2em", marginLeft:"2em", fontFamily: "EB Garamond, serif"}} className="smallUserDetailContainer">
             <Row>
                 <Col>
                 {
@@ -60,7 +60,8 @@ const CurrentUserProfile = () => {
             </Row>    
             </Card>
             <Col>
-            <Table style={{width: "20%", margin: "1em auto"}}>
+            <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"30%", borderRadius:"3%"}}>
+            <Table style={{width: "85%", margin: "1em auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
                         <th> Your Friends</th>
@@ -74,9 +75,13 @@ const CurrentUserProfile = () => {
                     </tbody>
                 ))}
             </Table>
+            </div>
             </Col>
             </Row>
-            <Table style={{width: "66%", margin: "1em auto"}}>
+            <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"66%", borderRadius:"4%"}}>
+
+            <h3 style={{background: "#FFFFF6", width: "84%", marginTop:"2em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>Your Books</h3>
+            <Table style={{width: "84%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
                        <th>Book List</th>
@@ -95,6 +100,7 @@ const CurrentUserProfile = () => {
                 ))}
                 
             </Table>
+            </div>
         </div>
     )
     }

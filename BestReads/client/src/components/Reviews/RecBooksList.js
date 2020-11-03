@@ -13,9 +13,9 @@ const RecBookList = () => {
     }, [])
 
     return (
-        <div className="justify-content-center">
-            <h3 style={{background: "#FFFFF6", width: "50%", marginTop: "5em", marginLeft:"auto", marginRight:"auto"}}>Books We Recommend For You</h3>
-            <Table style={{width: "50%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
+        <div style={{background: "#EA905D", paddingTop:".5em", paddingBottom:"1em", margin:"3em auto", width:"38%", borderRadius:"9%"}}>
+            <h3 style={{background: "#FFFFF6", width: "75%", marginTop: "2em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>Books We Recommend For You</h3>
+            <Table style={{width: "75%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
                         <th>Book Cover</th>

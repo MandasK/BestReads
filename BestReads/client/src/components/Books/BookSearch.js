@@ -18,7 +18,9 @@ const BookSearch = () => {
 
     return (
         <div className="justify-content-center">
-        <Card className="col-sm-12 col-lg-6 editUserProfileCard">
+        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"40%", borderRadius:"1.5%"}}>
+            <h3 style={{fontFamily: "EB Garamond, serif", margin:".5em auto", width: "80%"}}>Enter the Name of the Book or Author you are looking for...</h3>       
+        <Card style={{fontFamily: "EB Garamond, serif", margin:"2em auto", width: "80%"}}>
         <CardBody className="editUserProfileCardBody">
             <Form>
                 <FormGroup>
@@ -36,9 +38,10 @@ const BookSearch = () => {
             <Button className="updateProfileButton"  onClick={newSearch}>Search</Button>{' '}
         </CardBody>
         </Card>
+        </div>
 
-        
-            <Table style={{width: "50%", margin: "0 auto"}}>
+        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"55%", borderRadius:"1.5%"}}>
+            <Table style={{width: "80%", margin: "2em auto", fontFamily: "EB Garamond, serif"}}>
                 <thead>
                     <tr>
                     <th style={{background: "#FFFFF6"}}>Book Cover</th>
@@ -56,6 +59,7 @@ const BookSearch = () => {
                 </tbody>
             ))}
             </Table>
+            </div>
         
 
 

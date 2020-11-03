@@ -16,9 +16,12 @@ const UserList = (props) => {
         getAllUsers();
     }, []);
 
+    //style={{fontFamily: "EB Garamond, serif", margin:"2em auto", width: "80%"}}
+
     return (
-        <div className="justify-content-center">
-            <Table style={{width: "50%", margin: "5em auto"}}>
+        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"66%", borderRadius:"1.5%"}}>
+            <h3 style={{fontFamily: "EB Garamond, serif", margin:".5em auto", width: "80%"}}>Select a book lover's profile to find out more about them, and follow them...</h3> 
+            <Table style={{width: "80%", margin: "1em auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
                     <th style={{background: "#FFFFF6"}}>Profile Picture</th>

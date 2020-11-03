@@ -27,11 +27,13 @@ const UserBookList = () => {
     }, []);
 
     return (
-        <div className="justify-content-center">
+        <div >
             <Row>
                 <Col>
-                <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto"}}>Books you want to read...</h3>
-            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
+                <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+                    <br></br>
+                <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>Books you want to read...</h3>
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
             <thead style={{background: "#FFFFF6"}}>
                 <tr>
                     <th>Book</th>
@@ -49,10 +51,14 @@ const UserBookList = () => {
                    </tbody>
                 ))}   
             </Table>
+            </div>
             </Col>
             <Col>
-            <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto"}}>Books you are reading...</h3>
-            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
+            <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+                    <br></br>
+            <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>Books you are reading...</h3>
+
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
             <thead style={{background: "#FFFFF6"}}>
                 <tr>
                     <th>Book</th>
@@ -70,11 +76,13 @@ const UserBookList = () => {
                    </tbody>
                 ))}   
             </Table>
-            
+            </div>
             </Col>
             <Col>
-            <h3 style={{background: "#FFFFF6", width: "90%", margin:"0 auto"}}>Books you've already read...</h3>
-            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto"}}>
+            <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+                    <br></br>
+            <h3 style={{background: "#FFFFF6", width: "90%", margin:"0 auto", fontFamily: "EB Garamond, serif"}}>Books you've already read...</h3>
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
             <thead style={{background: "#FFFFF6"}}>
                 <tr>
                     <th>Book</th>
@@ -92,6 +100,7 @@ const UserBookList = () => {
                    </tbody>
                 ))}   
             </Table>
+            </div>
             </Col>
             </Row>
         </div>
