@@ -41,21 +41,23 @@ const AddReviewForm = ({showAdd, readStateId}) => {
 
     if (isLoading) {
         return(
-            <div className="justify-content-center">
-                <Form>
+            <div className="justify-content-center" style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+                <Form style={{backgroundColor: "#FFFFF6", margin:"0.5em auto", fontFamily: "EB Garamond, serif"}}>
                     <FormGroup>
-                        <Label for="rating">Rating</Label>
-                        <Alert color="light">Number between 1-5</Alert>
+                        <Label style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} for="rating">Rating</Label>
+                        <Alert style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>Number between 1-5</Alert>
                         <Input type="number" 
+                        style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}
                                placeholder="Enter number between 1-5"
                                name="rating" 
                                id="rating"
                                innerRef={rating}></Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="content">Written Review</Label>
+                        <Label style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} for="content">Written Review</Label>
                         <Input type="textarea"
                                 placeholder="What do you have to say?"
+                                style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}
                                 name="content"
                                 id="content"
                                 innerRef={content}></Input>

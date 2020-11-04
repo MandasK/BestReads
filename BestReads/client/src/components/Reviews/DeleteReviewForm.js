@@ -22,14 +22,13 @@ const DeleteReviewForm = ({areviewId, toggle}) => {
     const confirmReviewDelete = e => {
         e.preventDefault();
         deleteReview(areviewId)
-        .then(() => {
             setIsLoading(false)
             .then(toggle)
                 .then(() => {
                     history.push({ pathname: "/empty" });
                     history.replace({ pathname: location.pathname })
                 })
-        })
+        
 
         
     }
@@ -38,10 +37,9 @@ const DeleteReviewForm = ({areviewId, toggle}) => {
 
 return(
     <>
-        <div className="lead mb-2">Are you sure you wish to delete your review?</div>
-            <div className="text-right">
-                <Button onClick={() => toggle}>Cancel</Button>
-                <Button onClick={confirmReviewDelete}>Delete</Button>
+        <div style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} className="lead mb-2">Are you sure you wish to delete your review?</div>
+            <div className="text-right" style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+                <Button className="LoginButton" style={{marginLeft: "1em"}} onClick={confirmReviewDelete}>Delete</Button>
         </div>
     </>
 )

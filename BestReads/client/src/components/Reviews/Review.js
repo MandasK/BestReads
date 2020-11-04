@@ -20,14 +20,14 @@ const Review = ({ review }) => {
         <td>{review.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showDelete(true)}>Delete</Button> : ""}</td>
 
         <Modal isOpen={deleteModal} toggle={deleteToggle}>
-                    <ModalHeader toggle={deleteToggle}>Delete Review</ModalHeader>
-                    <ModalBody className="lead">
+                    <ModalHeader style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} toggle={deleteToggle}>Delete Review</ModalHeader>
+                    <ModalBody style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} className="lead">
                         <DeleteReviewForm areviewId={review.id} toggle={deleteToggle} />
                     </ModalBody>
                 </Modal>
-                <Modal isOpen={reviewEditModal} toggle={editReviewToggle}>
-                    <ModalHeader toggle={editReviewToggle}>Edit Review</ModalHeader>
-                    <ModalBody className="lead">
+                <Modal style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} isOpen={reviewEditModal} toggle={editReviewToggle}>
+                    <ModalHeader style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} toggle={editReviewToggle}>Edit Review</ModalHeader>
+                    <ModalBody style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} className="lead">
                         <EditReviewForm  areviewId={review.id} toggle={editReviewToggle} />
                     </ModalBody>
                 </Modal>

@@ -43,7 +43,7 @@ const CurrentUserProfile = () => {
     return (
         <div className="justify-content-center">
             <Row>
-            <Card style={{ border: "none", width: "40%", marginTop:"2em", marginLeft:"2em", fontFamily: "EB Garamond, serif"}} className="smallUserDetailContainer">
+            <Card style={{ background: "#FFFFF6", border: "none", width: "40%", marginTop:"2em", marginLeft:"2em", fontFamily: "EB Garamond, serif"}} className="smallUserDetailContainer">
             <Row>
                 <Col>
                 {

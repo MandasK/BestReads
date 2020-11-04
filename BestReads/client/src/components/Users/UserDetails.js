@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import {useParams, useHistory } from 'react-router-dom';
 import { UserProfileContext} from '../../providers/UserProfileProvider';
 import {SubscriptionContext} from '../../providers/SubscriptionProvider';
-import { CardImg, Card, CardBody, Row, Col, Button, Table } from 'reactstrap';
+import { CardImg, Card, CardBody, Row, Col, Button, Table, CardHeader } from 'reactstrap';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
 
 const UserDetails = (props) => {
@@ -83,17 +83,27 @@ const UserDetails = (props) => {
         return (
             <div>
                 <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"40%", borderRadius:"1.5%", fontFamily: "EB Garamond, serif"}}>
+                
               <Card style={{border:"none", width: "85%", margin:"1em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
                   <Row>
-                      <Col>
-                  { 
-                    aUser.imageLocation != null ? <CardImg style={{width:"60%", height:"auto"}} src={aUser.imageLocation} alt={aUser.displayName} /> : <i className="fa-user-circle fa-7x" /> 
-                  }
-                  </Col>
-                  <CardBody className="smallUserDetailBodyContainer">
                   <Col>
-                        <h3>{aUser.displayName}</h3>
+                  <CardHeader style={{backgroundColor: "#FFFFF6"}}>
+                      
+                      <Row>
+                  { 
+                    aUser.imageLocation != null ? <img style={{width:"50px", height:"auto"}} src={aUser.imageLocation} alt={aUser.displayName} /> : <i className="fa-user-circle fa-7x" /> 
+                    
+                  }
+                  
+                  <h3>{aUser.displayName}</h3>
+                  </Row>
+                  
+                  </CardHeader>
+
+                  <CardBody className="smallUserDetailBodyContainer">
+                  
                         <div>{aUser.bio}</div>
+                        <br></br>
                         {
                             !isUser && ( !isSubscribed ? <Button className="updateProfileButton" disabled={isLoading, isSubscribed} onClick = {(e) => {
                                         e.preventDefault()
@@ -112,10 +122,12 @@ const UserDetails = (props) => {
                                     
                                 }>UnFollow</Button>)
                         }
-                  </Col>
+
                   </CardBody>
+                  </Col>
                   </Row>
               </Card>  
+              
               </div>
                      
               <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"66%", borderRadius:"1.5%"}}>

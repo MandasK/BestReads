@@ -70,11 +70,12 @@ const AddReadBookState = () => {
                     <Form style={{backgroundColor: "#FFFFF6", margin:"0.5em auto", fontFamily: "EB Garamond, serif"}}>
                         <FormGroup style={{backgroundColor: "#FFFFF6", marginLeft:"1em"}}>
                             <Label style={{backgroundColor: "#FFFFF6", marginLeft:"1em"}} for="stateId"><strong>What Book List Should I Add This to?</strong></Label>
-                            <select style={{backgroundColor: "#FFFFF6", width:"35%", marginLeft:"1em"}} defaultValue=""
+                            <select style={{backgroundColor: "#FFFFF6", width:"35%", marginLeft:"1em"}}
                                     name="stateId"
                                     id="stateId"
                                     className="form-control"
                                     onChange={(e) => setStateid(e.target.value)}>
+                                <option defaultValue="Please choose an option" hidden></option>        
                                 <option value="1">Want to Read</option>
                                 <option value="2">Currently Reading</option>
                                 <option value="3">Already Read</option>

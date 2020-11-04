@@ -14,7 +14,7 @@ const RecBookList = () => {
 
     return (
         <div style={{background: "#EA905D", paddingTop:".5em", paddingBottom:"1em", margin:"3em auto", width:"38%", borderRadius:"9%"}}>
-            <h3 style={{background: "#FFFFF6", width: "75%", marginTop: "2em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>Books We Recommend For You</h3>
+            <h3 style={{background: "#FFFFF6", width: "75%", marginTop: "2em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>Highly Rated Books You Might Enjoy</h3>
             <Table style={{width: "75%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>

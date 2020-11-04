@@ -4,7 +4,7 @@ import { ReadStateContext } from '../../providers/ReadStateProvider';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import EditReadStateForm from './EditReadStateForm';
 import AddReviewForm from '../Reviews/AddReviewForm';
-import { Card, Modal, ModalHeader, ModalBody, CardBody, CardImg, Col, Row, Spinner, Button, Table } from 'reactstrap';
+import { Card, Modal, ModalHeader, ModalBody, CardBody, CardImg, Col, Row, Spinner, Button, Table, CardHeader } from 'reactstrap';
 import comingsoon from '../../Images/comingsoon.png'
 import DeleteReviewForm from '../Reviews/DeleteReviewForm';
 import EditReviewForm from '../Reviews/EditReviewForm';
@@ -47,15 +47,15 @@ const BookDetails = () => {
     const renderModal = (readState) => {
         return (
             <>
-            <Modal isOpen={editModal} toggle={editModalToggle}>
-                <ModalHeader toggle={editModalToggle}>Change Current Book List</ModalHeader>
-                <ModalBody>
+            <Modal style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} isOpen={editModal} toggle={editModalToggle}>
+                <ModalHeader style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} toggle={editModalToggle}>Change Current Book List</ModalHeader>
+                <ModalBody style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
                     <EditReadStateForm readStateId={readState.id} showEdit={showEdit} />
                 </ModalBody>
             </Modal>
-            <Modal isOpen={addModal} toggle={addModalToggle}>
-                <ModalHeader toggle={addModalToggle}>Add new Book Review</ModalHeader>
-                <ModalBody>
+            <Modal isOpen={addModal} toggle={addModalToggle} style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+                <ModalHeader style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} toggle={addModalToggle}>Add new Book Review</ModalHeader>
+                <ModalBody style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
                     <AddReviewForm readStateId={readState.id} showAdd={showAdd} />
                 </ModalBody>
             </Modal>
@@ -95,17 +95,22 @@ const BookDetails = () => {
     {
        return(   
            <div>
-            <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+            <Card style={{border:"none", width: "70%", margin:"5em auto", background: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
             <Row>
                     <Col>
+                    
+                    <CardHeader style={{background: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+                    <Row>
                     {
-                        readState.book.imageLocation != null ? <CardImg src={readState.book.imageLocation} alt={readState.book.title} /> 
-                        : <CardImg src={comingsoon} alt="coming soon" />
+                        readState.book.imageLocation != null ? <img style={{height:"50px", width:"auto"}} src={readState.book.imageLocation} alt={readState.book.title} /> 
+                        : <img src={comingsoon} alt="coming soon" />
                     }
-                    </Col>
-                    <Col>
+                    <h3 style={{marginLeft: "1em", background: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>{readState.book.title}</h3>
+                    </Row>
+                    </CardHeader> 
+                    
                     <CardBody>
-                            <h3><strong>Title:</strong> {readState.book.title}</h3>
+                            
                             <div><strong>Pages:</strong> {readState.book.pageCount}</div>
                             <div><strong>Publish Date:</strong> {readState.book.publishDate}</div>
                             <div><strong>Author(s):</strong> {readState.book.authors}</div>
@@ -134,11 +139,7 @@ const BookDetails = () => {
                 {areviews.map((areview) => (
                     <tbody key={areview.id} style={{background: "#FFFFF6"}}>
                         <tr>
-                            {/* <td>{areview.rating}</td>
-                            <td>{areview.content}</td>
-                            <td>{areview.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showReviewEdit(true)}>Edit</Button> : ""}</td>
-                            <td>{areview.readState.user.id == clientUser.id ? <Button className="LoginButton" onClick={() => showDelete(true)}>Delete</Button> : ""}</td>
-                            {renderReviewModal(areview)} */}
+                            
                             <Review review={areview} />
                         </tr>
                     </tbody>
