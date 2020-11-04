@@ -22,7 +22,8 @@ const DeleteReviewForm = ({areviewId, toggle}) => {
     const confirmReviewDelete = e => {
         e.preventDefault();
         deleteReview(areviewId)
-            setIsLoading(false)
+            //setIsLoading(false)
+            //.then(() => getReviewById(id))
             .then(toggle)
                 .then(() => {
                     history.push({ pathname: "/empty" });

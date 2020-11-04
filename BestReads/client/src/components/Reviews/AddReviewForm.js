@@ -45,7 +45,7 @@ const AddReviewForm = ({showAdd, readStateId}) => {
                 <Form style={{backgroundColor: "#FFFFF6", margin:"0.5em auto", fontFamily: "EB Garamond, serif"}}>
                     <FormGroup>
                         <Label style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} for="rating">Rating</Label>
-                        <Alert style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>Number between 1-5</Alert>
+                        {/* <Alert style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>Number between 1-5</Alert> */}
                         <Input type="number" 
                         style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}
                                placeholder="Enter number between 1-5"
