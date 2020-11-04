@@ -40,14 +40,15 @@ const EditReadStateForm = ({showEdit, readStateId}) => {
 
     if(isLoading) {
         return (
-        <div className="justify-content-center">
-            <Form>
-                <FormGroup>
-                    <Label for="newStateId">What Book List Should I Add This to?</Label>
+        <div className="justify-content-center" style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+            <Form style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+                <FormGroup style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
+                    <Label style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}} for="newStateId">What Book List Should I Add This to?</Label>
                         <select 
                                 name="newStateId"
                                 id="newStateId"
                                  className="form-control"
+                                 style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}
                                 onChange={(e) => setNewStateId(e.target.value)}>
                                     <option defaultValue={readState.state.id} hidden>{readState.state.title}</option>
                                     <option value="1">Want to Read</option>

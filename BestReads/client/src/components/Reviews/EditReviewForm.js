@@ -40,21 +40,23 @@ const EditReviewForm = ({areviewId, toggle}) => {
 
     if(ready) {
         return (
-            <div className="justify-content-center">
-                <Form>
+            <div className="justify-content-center" style={{backgroundColor: "#FFFFF6", margin:"0.5em auto", fontFamily: "EB Garamond, serif"}}>
+                <Form style={{backgroundColor: "#FFFFF6", margin:"0.5em auto", fontFamily: "EB Garamond, serif"}}>
                     <FormGroup>
-                        <Label for="newRating"> Rating</Label>
-                        <Alert color="light">Number between 1-5</Alert>
+                        <Label for="newRating" style={{backgroundColor: "#FFFFF6",fontFamily: "EB Garamond, serif"}}> Rating</Label>
+                        <Alert color="light" style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>Number between 1-5</Alert>
                         <Input type="number"
                                defaultValue={review.rating}
+                               style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}
                                name="newRating"
                                id="newRating"
                                innerRef={newRating}>
                                </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="newContent">Written Review</Label>
+                        <Label for="newContent" style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>Written Review</Label>
                         <Input type="textarea"
+                        style={{backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}
                                 defaultValue={review.content}
                                 name="newContent"
                                 id="newContent"
@@ -62,7 +64,7 @@ const EditReviewForm = ({areviewId, toggle}) => {
                                 </Input>
                     </FormGroup>
                     <Button className="LoginButton"
-                            onClick={submit}>SaveReview</Button>
+                            onClick={submit}>Save Review</Button>
                 </Form>
             </div>
         )

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { BookSearchContext } from '../../providers/BookSearchProvider';
 import { BookContext } from '../../providers/BookProvider';
-import { CardHeader, Card, Spinner, CardImg, CardBody, Button, Row } from 'reactstrap';
+import { CardHeader, Card, Spinner, CardImg, CardBody, Button, Row, Col } from 'reactstrap';
 
 const AddBook = () => {
     const { getSelectedBook, book } = useContext(BookSearchContext);
@@ -44,21 +44,27 @@ const AddBook = () => {
     if (isLoading) {
     return (
         <div className="d-flex justify-content-center">
-            <Card style={{ width: "50%", margin: "5em auto" }}>
-            <CardHeader style={{backgroundColor: "#FFFFF6"}}>
+            <Card style={{ width: "71%", margin: "4em auto", backgroundColor: "#FFFFF6", border:"none" , fontFamily: "EB Garamond, serif"}}>
+            <Row>        
+                <Col>  
+                <CardHeader style={{backgroundColor: "#FFFFF6"}}>
+                    <Row>
+                <img style={{height:"50px", width: "auto", marginRight: "1em"}} src={book.imageLocation} alt={book.title} />
                     <h3>{book.title}</h3>
-                </CardHeader>
-                <CardImg  src={book.imageLocation} alt={book.title} />                
+                    </Row>
+                </CardHeader>       
                 <CardBody style={{backgroundColor: "#FFFFF6"}}>
-                    <div>Author(s): {book.authors}</div>
+                    
+                    <div><strong>Author(s):</strong> {book.authors}</div>
                     <br></br>
-                    <div>About:</div>
+                    <div><strong>About:</strong></div>
                     <div>
                     {bookAbout.replaceAll(regex, " ")}
                     </div>
                     <br></br>
-                    <div>Page Count: {book.pageCount}</div>
+                    <div><strong>Page Count:</strong> {book.pageCount}</div>
                     <br></br>
+                    
                 </CardBody>
                 <Row>
                     <Button type="button"
@@ -74,7 +80,10 @@ const AddBook = () => {
                                     onClick={submit}
                                     >Save Book
                     </Button>
-                </Row>   
+                    
+                </Row>  
+                </Col> 
+                </Row>
             </Card>
         </div>
     )

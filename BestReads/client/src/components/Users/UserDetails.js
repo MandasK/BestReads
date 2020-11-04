@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import {useParams, useHistory } from 'react-router-dom';
 import { UserProfileContext} from '../../providers/UserProfileProvider';
 import {SubscriptionContext} from '../../providers/SubscriptionProvider';
-import { CardImg, Card, CardBody, Row, Col, Button } from 'reactstrap';
+import { CardImg, Card, CardBody, Row, Col, Button, Table, CardHeader } from 'reactstrap';
+import { ReadStateContext } from '../../providers/ReadStateProvider';
 
 const UserDetails = (props) => {
     const { getUserById, getCurrentUser } = useContext(UserProfileContext);
     const { addSubscription, getReleventSubscriptions, unSubscribe, subscriptions } = useContext(SubscriptionContext);
+    const { getAllReadStateForUser, readStates } = useContext(ReadStateContext);
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [isUser, setIsUser] = useState(false);
     const [aUser, setAUser] = useState({});
@@ -22,6 +24,11 @@ const UserDetails = (props) => {
     const refresh = ()=>{
        window.location.reload();
     }
+
+    useEffect(() => {
+        getAllReadStateForUser(id)
+    }, []);
+
     useEffect(() => {
         getCurrentUser(clientuser.firebaseUserId);
     }, []);
@@ -32,6 +39,7 @@ const UserDetails = (props) => {
             setAUser(aUser)
         })
     }, []);
+
 
     useEffect(() => {
         aUser && getReleventSubscriptions(newCurrentUser, newId)
@@ -74,24 +82,35 @@ const UserDetails = (props) => {
     
         return (
             <div>
-              <Card style={{border:"none", width: "80%", margin:"5em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
+                <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"40%", borderRadius:"1.5%", fontFamily: "EB Garamond, serif"}}>
+                
+              <Card style={{border:"none", width: "85%", margin:"1em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
                   <Row>
-                      <Col>
-                  { 
-                    aUser.imageLocation != null ? <CardImg style={{width:"60%", height:"auto"}} src={aUser.imageLocation} alt={aUser.displayName} /> : <i className="fa-user-circle fa-7x" /> 
-                  }
-                  </Col>
-                  <CardBody className="smallUserDetailBodyContainer">
                   <Col>
-                        <h3>{aUser.displayName}</h3>
+                  <CardHeader style={{backgroundColor: "#FFFFF6"}}>
+                      
+                      <Row>
+                  { 
+                    aUser.imageLocation != null ? <img style={{width:"50px", height:"auto"}} src={aUser.imageLocation} alt={aUser.displayName} /> : <i className="fa-user-circle fa-7x" /> 
+                    
+                  }
+                  
+                  <h3>{aUser.displayName}</h3>
+                  </Row>
+                  
+                  </CardHeader>
+
+                  <CardBody className="smallUserDetailBodyContainer">
+                  
                         <div>{aUser.bio}</div>
+                        <br></br>
                         {
-                            !isUser && ( !isSubscribed ? <Button disabled={isLoading, isSubscribed} onClick = {(e) => {
+                            !isUser && ( !isSubscribed ? <Button className="updateProfileButton" disabled={isLoading, isSubscribed} onClick = {(e) => {
                                         e.preventDefault()
                                         subscribe()
                                         
                                      }
-                                }>Follow</Button> : <Button disabled={isLoading, !isSubscribed} onClick={(e) => {
+                                }>Follow</Button> : <Button className="updateProfileButton" disabled={isLoading, !isSubscribed} onClick={(e) => {
                                     e.preventDefault()
                                     unSubscribe(currentSubscription)
                                     .then(() =>{
@@ -103,10 +122,35 @@ const UserDetails = (props) => {
                                     
                                 }>UnFollow</Button>)
                         }
-                  </Col>
+
                   </CardBody>
+                  </Col>
                   </Row>
               </Card>  
+              
+              </div>
+                     
+              <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"66%", borderRadius:"1.5%"}}>
+              <h3 style={{fontFamily: "EB Garamond, serif", margin:".5em auto", width: "66%"}}>{aUser.displayName}'s Books</h3>
+              <Table style={{width: "80%", margin: "1em auto", fontFamily: "EB Garamond, serif"}}>
+                  <thead style={{background: "#FFFFF6"}}>
+                      <tr>
+                          <td>Book Cover</td>
+                          <td>Title</td>
+                          <td>Author(s)</td>
+                      </tr>
+                  </thead>
+                  {readStates.map((rs) => (
+                      <tbody key={rs.id} style={{background: "#FFFFF6"}}>
+                      <tr>
+                          <td><img style={{height: "50px", width:"auto"}} src={rs.book.imageLocation} alt={rs.book.title}/></td>
+                          <td>{rs.book.title}</td>
+                          <td>{rs.book.authors}</td>
+                      </tr>
+                      </tbody>
+                  ))}
+              </Table>
+              </div>
             </div>
         )
          

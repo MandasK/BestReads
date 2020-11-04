@@ -9,6 +9,7 @@ namespace BestReads.Repositories
         void ChangeState(ReadState readState);
         List<ReadState> GetAllReadStates();
         List<ReadState> GetAllUserReadStates(int currentUserId);
+        List<ReadState> GetAllUserReadStatesByState(int currentUserId, int number);
         ReadState GetReadStateById(int id);
     }
 }

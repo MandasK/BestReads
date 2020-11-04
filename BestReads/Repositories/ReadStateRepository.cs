@@ -158,6 +158,71 @@ namespace BestReads.Repositories
             }
         }
 
+        public List<ReadState> GetAllUserReadStatesByState(int currentUserId, int number)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT rs.Id, rs.StateId, rs.BookId, rs.UserId,
+                               s.Title AS StateTitle,
+                               u.Name, u.DisplayName, u.Bio, u.ImageLocation as UserImageLocation,
+                               b.GoogleId, b.Title AS BookTitle, b.ImageLocation AS BookImageLocation, b.About, b.Authors,
+                               b.PageCount, b.PublishDate
+                        FROM ReadState rs
+                        LEFT JOIN State s on rs.StateId = s.Id
+                        LEFT JOIN Users u on rs.UserId = u.Id
+                        LEFT JOIN Books b on rs.BookId = b.Id
+                        WHERE rs.UserId = @id AND rs.StateId = @number
+                        ORDER BY StateTitle
+                                       ";
+                    DbUtils.AddParameter(cmd, "@id", currentUserId);
+                    DbUtils.AddParameter(cmd, "@number", number);
+
+                    var reader = cmd.ExecuteReader();
+
+                    var readStates = new List<ReadState>();
+                    while (reader.Read())
+                    {
+                        readStates.Add(new ReadState()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            State = new State()
+                            {
+                                ID = DbUtils.GetInt(reader, "StateId"),
+                                Title = DbUtils.GetString(reader, "StateTitle"),
+                            },
+                            User = new Users()
+                            {
+                                Id = DbUtils.GetInt(reader, "StateId"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                Bio = DbUtils.GetString(reader, "Bio"),
+                                ImageLocation = DbUtils.GetString(reader, "UserImageLocation"),
+                            },
+                            Book = new Book()
+                            {
+                                Id = DbUtils.GetInt(reader, "BookId"),
+                                GoogleId = DbUtils.GetString(reader, "GoogleId"),
+                                Title = DbUtils.GetString(reader, "BookTitle"),
+                                ImageLocation = DbUtils.GetString(reader, "BookImageLocation"),
+                                About = DbUtils.GetString(reader, "About"),
+                                Authors = new List<string>()
+                                {
+                                    reader.GetString(reader.GetOrdinal("Authors"))
+                                }
+                            },
+                        });
+                    }
+
+                    reader.Close();
+                    return readStates;
+                }
+            }
+        }
+
         public ReadState GetReadStateById (int id)
         {
             using (var conn = Connection)

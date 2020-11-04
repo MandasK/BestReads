@@ -1,5 +1,4 @@
-﻿
-using BestReads.Models;
+﻿using BestReads.Models;
 using BestReads.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -34,7 +33,38 @@ namespace BestReads.Controllers
             var readState = _readStateRepository.GetAllUserReadStates(currentUserId);
             return Ok(readState);
         }
-        
+
+        [HttpGet("{currentUserId}/1")]
+        public IActionResult GetUserBookListsByList1(int currentUserId)
+        {
+            var readState = _readStateRepository.GetAllUserReadStatesByState(currentUserId, 1);
+            if(readState == null)
+            {
+                return NotFound();
+            }
+            return Ok(readState);
+        }
+        [HttpGet("{currentUserId}/2")]
+        public IActionResult GetUserBookListsByList2(int currentUserId)
+        {
+            var readState = _readStateRepository.GetAllUserReadStatesByState(currentUserId, 2);
+            if (readState == null)
+            {
+                return NotFound();
+            }
+            return Ok(readState);
+        }
+        [HttpGet("{currentUserId}/3")]
+        public IActionResult GetUserBookListsByList3(int currentUserId)
+        {
+            var readState = _readStateRepository.GetAllUserReadStatesByState(currentUserId, 3);
+            if (readState == null)
+            {
+                return NotFound();
+            }
+            return Ok(readState);
+        }
+
         [HttpGet("{id}/details")]
         public IActionResult GetById(int id)
         {
