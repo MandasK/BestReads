@@ -2,6 +2,8 @@
 
 BestReads is a web app designed for book lovers to be able to organize books into lists, find fellow book lovers, and get book recommendations. 
 
+[Link to app demo](https://www.youtube.com/watch?v=INzUImumc-E&feature=youtu.be)
+
 ## Installation
 
 clone down this repo ```git@github.com:MandasK/BestReads.git```
