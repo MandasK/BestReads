@@ -8,7 +8,7 @@ import "./UserProfile.css"
 
 const CurrentUserProfile = () => {
     const { currentUser, getCurrentUser } = useContext(UserProfileContext);
-    const { getAllReadStateForUser, readStates } =useContext(ReadStateContext);
+    const { getReadStateByState1, getReadStateByState2, getReadStateByState3, toRead, reading, read } =useContext(ReadStateContext);
     const { getUserSubscriptions } = useContext(SubscriptionContext);
     const [isloading, setIsLoading] = useState(false);
     const [subs, setSubscriptions] = useState([]);
@@ -21,11 +21,23 @@ const CurrentUserProfile = () => {
         .then(() => setIsLoading(true))
     }, []);
 
+     //toReadList
+     useEffect(() => {
+        getReadStateByState1(clientuser.id)
+            
+    }, [])
+
+    //readList
     useEffect(() => {
-        getAllReadStateForUser(clientuser.id)
+        getReadStateByState2(clientuser.id)
+        
     }, []);
 
-    console.log(readStates)
+    //readList
+    useEffect(() => {
+        getReadStateByState3(clientuser.id)
+        
+    }, []);
 
     useEffect(() => {
         getUserSubscriptions(clientuser.id)
@@ -78,29 +90,83 @@ const CurrentUserProfile = () => {
             </div>
             </Col>
             </Row>
-            <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"66%", borderRadius:"4%"}}>
-
-            <h3 style={{background: "#FFFFF6", width: "84%", marginTop:"2em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>Your Books</h3>
-            <Table style={{width: "84%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>
-                <thead style={{background: "#FFFFF6"}}>
-                    <tr>
-                       <th>Book List</th>
-                       <th>Book</th> 
-                       <th>Author</th>
-                    </tr>
-                </thead>
-                {readStates.map((readState) => (
-                   <tbody key={readState.id} style={{background: "#FFFFF6"}}> 
-                   <tr>
-                       <td><Link to={`/books/${readState.id}/details`}><img style={{height: "50px", width:"auto"}} src={readState.book.imageLocation} alt={readState.book.title}/></Link></td>
-                       <td>{readState.book.title}</td>
-                       <td>{readState.book.authors}</td>
-                   </tr>
-               </tbody>
-                ))}
-                
+            
+            <Row>
+                <Col>
+                <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+                    <br></br>
+                <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>Books you want to read...</h3>
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
+            <thead style={{background: "#FFFFF6"}}>
+                <tr>
+                    <th>Book</th>
+                    <th>Title</th> 
+                    <th>Author</th>
+                </tr>
+            </thead>
+                {toRead.map((tr) => (
+                   <tbody key={tr.id} style={{background: "#FFFFF6"}}>
+                        <tr>
+                            <td><Link to={`/books/${tr.id}/details`}><img style={{height: "50px", width:"auto"}} src={tr.book.imageLocation} alt={tr.book.title}/></Link></td>
+                            <td>{tr.book.title}</td>
+                            <td>{tr.book.authors}</td>
+                        </tr>
+                   </tbody>
+                ))}   
             </Table>
             </div>
+            </Col>
+            <Col>
+            <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+                    <br></br>
+            <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>Books you are reading...</h3>
+
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
+            <thead style={{background: "#FFFFF6"}}>
+                <tr>
+                    <th>Book</th>
+                    <th>Title</th> 
+                    <th>Author</th>
+                </tr>
+            </thead>
+                {reading.map((rd) => (
+                   <tbody key={rd.id} style={{background: "#FFFFF6"}}>
+                        <tr>
+                            <td><Link to={`/books/${rd.id}/details`}><img style={{height: "50px", width:"auto"}} src={rd.book.imageLocation} alt={rd.book.title}/></Link></td>
+                            <td>{rd.book.title}</td>
+                            <td>{rd.book.authors}</td>
+                        </tr>
+                   </tbody>
+                ))}   
+            </Table>
+            </div>
+            </Col>
+            <Col>
+            <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+                    <br></br>
+            <h3 style={{background: "#FFFFF6", width: "90%", margin:"0 auto", fontFamily: "EB Garamond, serif"}}>Books you've already read...</h3>
+            <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
+            <thead style={{background: "#FFFFF6"}}>
+                <tr>
+                    <th>Book</th>
+                    <th>Title</th> 
+                    <th>Author</th>
+                </tr>
+            </thead>
+                {read.map((r) => (
+                   <tbody key={r.id} style={{background: "#FFFFF6"}}>
+                        <tr>
+                            <td><Link to={`/books/${r.id}/details`}><img style={{height: "50px", width:"auto"}} src={r.book.imageLocation} alt={r.book.title}/></Link></td>
+                            <td>{r.book.title}</td>
+                            <td>{r.book.authors}</td>
+                        </tr>
+                   </tbody>
+                ))}   
+            </Table>
+            </div>
+            </Col>
+            </Row>
+            
         </div>
     )
     }
