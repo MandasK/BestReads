@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import {Helmet} from "react-helmet";
 import { ReviewContext } from '../../providers/ReviewProvider';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
 import { useParams, useHistory, Link } from 'react-router-dom';
@@ -95,6 +96,10 @@ const BookDetails = () => {
     {
        return(   
            <div>
+            <Helmet>
+                <title>BestReads-{readState.book.title}</title>
+                <meta name="description" content="Details of chosen book from book search." />
+            </Helmet>
             <Card style={{border:"none", width: "70%", margin:"5em auto", background: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
             <Row>
                     <Col>

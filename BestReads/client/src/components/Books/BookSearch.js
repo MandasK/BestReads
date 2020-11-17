@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import {Helmet} from "react-helmet";
 import { BookSearchContext } from '../../providers/BookSearchProvider';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Form, FormGroup, Input, Button, Table } from 'reactstrap';
@@ -18,6 +19,10 @@ const BookSearch = () => {
 
     return (
         <div className="justify-content-center">
+            <Helmet>
+                <title>BestReads-Book Search</title>
+                <meta name="description" content="Search for a book to read." />
+            </Helmet>
         <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"40%", borderRadius:"1.5%"}}>
             <h3 style={{fontFamily: "EB Garamond, serif", margin:".5em auto", width: "80%"}}>Enter the Name of the Book or Author you are looking for...</h3>       
         <Card style={{fontFamily: "EB Garamond, serif", margin:"2em auto", width: "80%"}}>

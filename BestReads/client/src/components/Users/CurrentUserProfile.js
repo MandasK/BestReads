@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
 import { SubscriptionContext } from '../../providers/SubscriptionProvider';
+import {Helmet} from "react-helmet";
 import { useHistory, Link } from 'react-router-dom';
 import { Card, CardImg, CardBody, Button, Row, Col, Table, Spinner } from 'reactstrap';
 import "./UserProfile.css"
@@ -54,6 +55,10 @@ const CurrentUserProfile = () => {
     {
     return (
         <div className="justify-content-center">
+            <Helmet>
+                    <title>BestReads-{currentUser.displayName}</title>
+                    <meta name="description" content="Details for current user." />
+            </Helmet>
             <Row>
             <Card style={{ background: "#FFFFF6", border: "none", width: "40%", marginTop:"2em", marginLeft:"2em", fontFamily: "EB Garamond, serif"}} className="smallUserDetailContainer">
             <Row>

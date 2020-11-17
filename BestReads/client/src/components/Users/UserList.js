@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 import { Table } from 'reactstrap';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 
@@ -20,6 +21,10 @@ const UserList = (props) => {
 
     return (
         <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"66%", borderRadius:"1.5%"}}>
+            <Helmet>
+            <title>BestReads-FInd Other Book Lovers</title>
+            <meta name="description" content="List of users on BestReads" />
+        </Helmet>
             <h3 style={{fontFamily: "EB Garamond, serif", margin:".5em auto", width: "80%"}}>Select a book lover's profile to find out more about them, and follow them...</h3> 
             <Table style={{width: "80%", margin: "1em auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
