@@ -20,7 +20,7 @@ const UserList = (props) => {
     //need to pull in all active subscriptions to current user to only display users that current user is not friends with. will need to map through current user's subscriptions to see if it matches any user ids to have them not display.
 
     return (
-        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"66%", borderRadius:"1.5%"}}>
+        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"66%", borderRadius:"1em"}}>
             <Helmet>
             <title>BestReads-FInd Other Book Lovers</title>
             <meta name="description" content="List of users on BestReads" />

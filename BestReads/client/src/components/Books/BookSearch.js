@@ -23,7 +23,7 @@ const BookSearch = () => {
                 <title>BestReads-Book Search</title>
                 <meta name="description" content="Search for a book to read." />
             </Helmet>
-        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"40%", borderRadius:"1.5%"}}>
+        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"40%", borderRadius:"1em"}}>
             <h3 style={{fontFamily: "EB Garamond, serif", margin:".5em auto", width: "80%"}}>Enter the Name of the Book or Author you are looking for...</h3>       
         <Card style={{fontFamily: "EB Garamond, serif", margin:"2em auto", width: "80%"}}>
         <CardBody className="editUserProfileCardBody">
@@ -45,7 +45,8 @@ const BookSearch = () => {
         </Card>
         </div>
 
-        <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"55%", borderRadius:"1.5%"}}>
+        <div style={{background: "#EA905D", paddingTop:".5em", paddingBottom:".1em", margin:"2em auto", width:"55%", borderRadius:"1em"}}>
+            
             <Table style={{width: "80%", margin: "2em auto", fontFamily: "EB Garamond, serif"}}>
                 <thead>
                     <tr>
@@ -64,6 +65,7 @@ const BookSearch = () => {
                 </tbody>
             ))}
             </Table>
+            
             </div>
         
 

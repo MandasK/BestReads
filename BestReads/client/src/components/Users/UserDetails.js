@@ -101,7 +101,7 @@ const UserDetails = (props) => {
                     <title>{`BestReads-${aUser.displayName}`}</title>
                     <meta name="description" content="Details for current user." />
             </Helmet>
-                <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"40%", borderRadius:"1.5%", fontFamily: "EB Garamond, serif"}}>
+                <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"40%", borderRadius:"1em", fontFamily: "EB Garamond, serif"}}>
                 
               <Card style={{border:"none", width: "85%", margin:"1em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
                   <Row>
