@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 import { BookContext } from '../../providers/BookProvider';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
 import { CardHeader, Card, CardImg, CardBody, Spinner, Form, FormGroup, Input, Label, Button, Row, Col } from 'reactstrap';
@@ -47,6 +48,10 @@ const AddReadBookState = () => {
     if(isLoading) {
         return (
             <div className="d-flex justify-content-center">
+            <Helmet>
+                <title>BestReads-{abook.title}</title>
+                <meta name="description" content="Details of chosen book from book search." />
+            </Helmet>
                 <Card style={{width: "75%", margin: "5em auto", backgroundColor: "#FFFFF6", fontFamily: "EB Garamond, serif"}}>
                     <Row>
                     <Col>

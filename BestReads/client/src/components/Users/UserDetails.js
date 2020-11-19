@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {useParams, useHistory } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 import { UserProfileContext} from '../../providers/UserProfileProvider';
 import {SubscriptionContext} from '../../providers/SubscriptionProvider';
 import { CardImg, Card, CardBody, Row, Col, Button, Table, CardHeader } from 'reactstrap';
@@ -96,7 +97,11 @@ const UserDetails = (props) => {
     
         return (
             <div>
-                <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"40%", borderRadius:"1.5%", fontFamily: "EB Garamond, serif"}}>
+                <Helmet>
+                    <title>{`BestReads-${aUser.displayName}`}</title>
+                    <meta name="description" content="Details for current user." />
+            </Helmet>
+                <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"1em", margin:"2em auto", width:"40%", borderRadius:"1em", fontFamily: "EB Garamond, serif"}}>
                 
               <Card style={{border:"none", width: "85%", margin:"1em auto", background: "#FFFFF6"}} className="smallUserDetailContainer">
                   <Row>

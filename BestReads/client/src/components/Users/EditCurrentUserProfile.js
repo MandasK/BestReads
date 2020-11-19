@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Card, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import {Helmet} from "react-helmet";
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { useHistory } from 'react-router-dom';
 import "./UserProfile.css"
@@ -53,6 +54,10 @@ const EditCurrentuserProfile = () => {
 
     return (
         <div className="row justify-content-center">
+                        <Helmet>
+                    <title>BestReads-{currentUser.displayName}-Edit</title>
+                    <meta name="description" content="Edit current user profile." />
+            </Helmet>
             <Card className="col-sm-12 col-lg-6 editUserProfileCard">
                 <CardBody className="editUserProfileCardBody">
                     <Form>

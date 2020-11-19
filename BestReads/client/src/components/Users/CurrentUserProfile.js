@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, } from 'react';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { ReadStateContext } from '../../providers/ReadStateProvider';
 import { SubscriptionContext } from '../../providers/SubscriptionProvider';
+import {Helmet} from "react-helmet";
 import { useHistory, Link } from 'react-router-dom';
 import { Card, CardImg, CardBody, Button, Row, Col, Table, Spinner } from 'reactstrap';
 import "./UserProfile.css"
@@ -54,6 +55,10 @@ const CurrentUserProfile = () => {
     {
     return (
         <div className="justify-content-center">
+            <Helmet>
+                    <title>BestReads-{currentUser.displayName}</title>
+                    <meta name="description" content="Details for current user." />
+            </Helmet>
             <Row>
             <Card style={{ background: "#FFFFF6", border: "none", width: "40%", marginTop:"2em", marginLeft:"2em", fontFamily: "EB Garamond, serif"}} className="smallUserDetailContainer">
             <Row>
@@ -72,7 +77,7 @@ const CurrentUserProfile = () => {
             </Row>    
             </Card>
             <Col>
-            <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"30%", borderRadius:"3%"}}>
+            <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".19em", margin:"2em auto", width:"30%", borderRadius:"1em"}}>
             <Table style={{width: "85%", margin: "1em auto", fontFamily: "EB Garamond, serif"}}>
                 <thead style={{background: "#FFFFF6"}}>
                     <tr>
@@ -93,7 +98,7 @@ const CurrentUserProfile = () => {
             
             <Row>
                 <Col>
-                <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+                <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:"0.001em", margin:"2em auto", width:"72%", borderRadius:"1em"}}>
                     <br></br>
                 <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>Books you want to read...</h3>
             <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
@@ -117,7 +122,7 @@ const CurrentUserProfile = () => {
             </div>
             </Col>
             <Col>
-            <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+            <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"1em"}}>
                     <br></br>
             <h3 style={{background: "#FFFFF6", width: "90%", margin: "0 auto", fontFamily: "EB Garamond, serif"}}>Books you are reading...</h3>
 
@@ -142,7 +147,7 @@ const CurrentUserProfile = () => {
             </div>
             </Col>
             <Col>
-            <div style={{background: "#EA905D", paddingTop:"2em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"10%"}}>
+            <div style={{background: "#EA905D", paddingTop:"1em", paddingBottom:".01em", margin:"2em auto", width:"72%", borderRadius:"1em"}}>
                     <br></br>
             <h3 style={{background: "#FFFFF6", width: "90%", margin:"0 auto", fontFamily: "EB Garamond, serif"}}>Books you've already read...</h3>
             <Table style={{width: "90%", marginBottom: "5em", marginLeft:"auto", marginRight:"auto", fontFamily: "EB Garamond, serif"}}>
